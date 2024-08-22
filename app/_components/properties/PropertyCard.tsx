@@ -6,11 +6,11 @@ import { urlForImage } from "@/utils/image";
 import CustomCarousel from "../carousel/Carousel";
 import PropertyRooms from "../rooms/PropertyRooms";
 import { Check, MapPinCheckInside } from 'lucide-react'
-import { useCheckAuth } from "@/utils/auth/hooks/useCheckAuth";
 import { addToWishlist } from "@/actions/wishlist/addToWishlist";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import { getLocalStorageToken } from "@/actions/utils/getLocalStorageToken";
 
 
 interface Props{
@@ -28,26 +28,25 @@ export default function PropertyCard(props:Props) {
       setDistanceObj(JSON.parse(storedDistanceObj) as DistanceObj);
     }
   }, []);
-  const addToWishList = useCheckAuth({
-    action:addToWishlist,
-    errorToast:"Error adding to wishlist",
-    successToast:"Added to wishlist"
-  })
   const addToWishListMutation = useMutation({
-    mutationFn:async ()=>  await addToWishList({
-      propertyName:props.property[0].name??'',
-      propertyType:JSON.stringify(props.property[0].propertyType),
-      isRoom:false,
-      propertyId:props.property[0]._id,
-      propertyImages:JSON.stringify(props.property[0].rooms?.[0].images?.map((image)=>urlForImage(image)))
-    }),
+    mutationFn:async ()=> {
+      const res = await addToWishlist({
+        propertyName:props.property[0].name??'',
+        propertyType:JSON.stringify(props.property[0].propertyType),
+        isRoom:false,
+        propertyId:props.property[0]._id,
+        propertyImages:JSON.stringify(props.property[0].rooms?.[0].images?.map((image)=>urlForImage(image))),
+        token:getLocalStorageToken()
+      })
+      return res
+    },
     onMutate:()=>{
       toast.dismiss()
       toast.loading('Adding to wishlist')
     },
-    onError:()=>{
+    onError:(err)=>{
       toast.dismiss()
-      toast.error('Error adding to wishlist')
+      toast.error(err.message)
     },
     onSuccess:()=>{
       toast.dismiss()

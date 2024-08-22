@@ -1,9 +1,9 @@
 import { getAllCollegesDetails } from "@/actions/colleges/getAllCollegesDetails";
 import { getCollegeDetails } from "@/actions/colleges/getCollegeDetail";
 import { getDistanceFromCollege } from "@/actions/distance";
-import CollegeRoutePageBreadCrumb from "@/app /_components/breadcrumb/CollegeRoutePageBreadCrumb";
-import CollegePropertiesFilterBar from "@/app /_components/filters/CollegePropertiesFilterBar";
-import PropertyGrid from "@/app /_components/properties/PropertyGrid";
+import CollegeRoutePageBreadCrumb from "@/app/_components/breadcrumb/CollegeRoutePageBreadCrumb";
+import CollegePropertiesFilterBar from "@/app/_components/filters/CollegePropertiesFilterBar";
+import PropertyGrid from "@/app/_components/properties/PropertyGrid";
 import { Properties } from "@/utils/types/sanity.types";
 
 export async function generateStaticParams() {

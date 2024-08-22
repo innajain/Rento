@@ -1,6 +1,6 @@
 import { getAllPropertiesIds } from "@/actions/properties/getAllPropertiesIds"
 import { getPropertyDetails } from "@/actions/properties/getPropertyDetails"
-import PropertyCard from "@/app /_components/properties/PropertyCard"
+import PropertyCard from "@/app/_components/properties/PropertyCard"
 
 
 
