@@ -1,0 +1,30 @@
+/* Customizing Swiper navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  color:#FFFFFF
+}
+
+/* Adjusting the arrow icon size */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 30px; /* Increase the size for visibility */
+}
+
+.swiper-pagination-bullet {
+    background-color: white; /* Default dot color */
+    width: 8px;
+    height: 8px;
+    opacity: 0.7; /* Adjust opacity */
+  }
+  
+  /* Active pagination dot */
+  .swiper-pagination-bullet-active {
+    background-color: #d66012; /* Active dot color */
+    opacity: 1; /* Fully opaque */
+  }
+/* swiper.css */
+.swiper-container {
+    width: 100%; /* Make sure the container takes full width */
+    max-width: 100%; /* Ensure it doesn't exceed its parent's width */
+  }
+  

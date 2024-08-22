@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import { NextUIProvider } from "@nextui-org/react";
+import Navbar from "./_components/Navbar";
+import ReactQueryProvider from "./_components/ReactQueryProvider";;
+import RecoilRootProvider from "./RecoilRootProvider";
+import GoogleOAuthProviderComponent from "./GoogleOAuthProvider";
+import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,7 +21,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <body className={inter.className}>
+      <ReactQueryProvider>
+        <GoogleOAuthProviderComponent>
+          <RecoilRootProvider>
+            <NextUIProvider>
+              <Navbar />
+              {children}
+              <Toaster />
+            </NextUIProvider>
+          </RecoilRootProvider>
+        </GoogleOAuthProviderComponent>
+      </ReactQueryProvider>
+    </body>
+  </html>
   );
 }
