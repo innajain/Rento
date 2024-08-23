@@ -22,8 +22,11 @@ interface Params {
 import { handleOAuthGoogleLogin } from "@/actions/auth/handleOauthGoogle";
 import toast from "react-hot-toast";
 import { executeLocalStorageAction, LocalStorageItems } from "@/utils/auth/executeLocalStorageAction";
+import { useRecoilState } from "recoil";
+import { LoginModalAtom } from "@/utils/state/LoginModalAtom";
 export default function Login(params: Params) {
   const { isOpen, onOpenChange } = params;
+  const [loginModalState, setLoginModalState] = useRecoilState(LoginModalAtom);
   const handleLoginSuccess = async (response:any) => {
     const token = await handleOAuthGoogleLogin(response)
     if(token){
@@ -37,7 +40,10 @@ export default function Login(params: Params) {
   };
   return (
     <>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
+      <Modal isOpen={loginModalState.isOpen}  onOpenChange={() => {
+          setLoginModalState({ isOpen: !loginModalState.isOpen });
+          if (onOpenChange) onOpenChange();
+        }} placement="top-center">
         <ModalContent>
           {(onClose) => (
             <>

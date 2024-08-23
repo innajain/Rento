@@ -1,8 +1,8 @@
 'use server'
 import { connectToDb } from "@/utils/connectToDb"
 import { handleAction } from "@/utils/handleAction";
-import { getUserIdFromToken } from "../utils/getUserIdFromToken";
 import { authenticateUser } from "../utils/authenticateUser";
+import { ErrorCode } from "../error/types";
 
 export interface WishListItem {
     propertyName: string;
@@ -14,17 +14,13 @@ export interface WishListItem {
     token?: string;
 }
 
-export const addToWishlist = async ({ propertyName, propertyType,token, roomDetails, isRoom,propertyId,propertyImages }: WishListItem) => {
-    try{
+export const addToWishlist = async ({ propertyName, propertyType,token, roomDetails, isRoom,propertyId,propertyImages }: WishListItem) => handleAction(async()=>{
         const pool = await connectToDb()
         const userId = await authenticateUser({token:token??''})
-        if(!userId) throw new Error('User not found')
-        // const [rows] = await pool.query<any[]>("INSERT INTO wishlists (propertyName, propertyType, userId, roomDetails, isRoom,propertyId,propertyImages) VALUES (?,?,?,?,?,?,?)", [propertyName, propertyType,userId, roomDetails??'', isRoom,propertyId,propertyImages])   
-    }catch(err){
-        throw new Error()
+        if(!userId) throw new Error(ErrorCode.UNAUTHORIZED)
+        const [rows] = await pool.query<any[]>("INSERT INTO wishlists (propertyName, propertyType, userId, roomDetails, isRoom,propertyId,propertyImages) VALUES (?,?,?,?,?,?,?)", [propertyName, propertyType,userId, roomDetails??'', isRoom,propertyId,propertyImages])  
     }
-
-}
+)
       
 
 

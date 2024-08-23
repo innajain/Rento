@@ -5,8 +5,8 @@ import { handleAction } from "@/utils/handleAction"
 interface Params{
     token:string
 }
-export const getCurrentUser = async ({token}:Params) => handleAction({
-    action: async () => {
+export const getCurrentUser = async ({token}:Params) => handleAction(
+    async () => {
         const pool = await connectToDb();
         const decoded = jwt.verify
         const [rows] = await pool.query<any[]>('SELECT * FROM users WHERE email = ?', [email]);
@@ -17,5 +17,5 @@ export const getCurrentUser = async ({token}:Params) => handleAction({
 
         return rows[0];
     },
-    errorMessage: "Error fetching user details"
-});
+   
+);

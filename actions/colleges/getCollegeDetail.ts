@@ -4,8 +4,7 @@ import { sanityClient } from "@/utils/sanityClient";
 import { Colleges } from "@/utils/types/sanity.types";
 
 export const getCollegeDetails = async (collegeId: string) =>
-  handleAction({
-    action: async () => {
+  handleAction( async () => {
       const college: Colleges[] = await sanityClient.fetch(`
           *[_type == "colleges" && _id == "${collegeId}"] {
           name,
@@ -19,5 +18,4 @@ export const getCollegeDetails = async (collegeId: string) =>
       console.log(college)
       return college;
     },
-    errorMessage: "Error in getting College Details",
-  });
+  );

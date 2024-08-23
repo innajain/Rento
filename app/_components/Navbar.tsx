@@ -15,8 +15,11 @@ import { useEffect, useState } from "react";
 import { GoogleOAuthToken } from "@/actions/auth/handleOauthGoogle";
 import Link from "next/link";
 import { executeLocalStorageAction, LocalStorageItems } from "@/utils/auth/executeLocalStorageAction";
+import { useRecoilState} from "recoil";
+import { LoginModalAtom } from "@/utils/state/LoginModalAtom";
 export default function Navbar() {
   const { onOpen, isOpen, onOpenChange } = useDisclosure();
+  const [loginModalState, setLoginModalState] = useRecoilState(LoginModalAtom);
   const [userDetails, setUserDetails] = useState<GoogleOAuthToken>();
   
   useEffect(() => {
@@ -42,7 +45,7 @@ export default function Navbar() {
         <Button
           className="bg-primary-gradient text-white"
           variant="flat"
-          onPress={onOpen}
+          onClick={()=>setLoginModalState({ isOpen: !loginModalState.isOpen })}
         >
           Login
         </Button>

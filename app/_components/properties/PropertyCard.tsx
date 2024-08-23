@@ -11,6 +11,7 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { getLocalStorageToken } from "@/actions/utils/getLocalStorageToken";
+import { useHandleError } from "@/actions/error/useHandleError";
 
 
 interface Props{
@@ -22,6 +23,7 @@ interface DistanceObj {
 }
 export default function PropertyCard(props:Props) {
   const [distanceObj, setDistanceObj] = useState<DistanceObj>({ distance: "", collegeName: "" });
+  const {handleError} = useHandleError()
   useEffect(() => {
     const storedDistanceObj = localStorage.getItem('distance');
     if (storedDistanceObj) {
@@ -46,7 +48,7 @@ export default function PropertyCard(props:Props) {
     },
     onError:(err)=>{
       toast.dismiss()
-      toast.error(err.message)
+      handleError(err)
     },
     onSuccess:()=>{
       toast.dismiss()
