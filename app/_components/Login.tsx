@@ -22,21 +22,25 @@ interface Params {
 import { handleOAuthGoogleLogin } from "@/actions/auth/handleOauthGoogle";
 import toast from "react-hot-toast";
 import { executeLocalStorageAction, LocalStorageItems } from "@/utils/auth/executeLocalStorageAction";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { LoginModalAtom } from "@/utils/state/LoginModalAtom";
+import { authAtom } from "@/utils/auth/authAtom";
+import { useRouter } from "next/navigation";
 export default function Login(params: Params) {
   const { isOpen, onOpenChange } = params;
   const [loginModalState, setLoginModalState] = useRecoilState(LoginModalAtom);
+  const setAuth = useSetRecoilState(authAtom)
   const handleLoginSuccess = async (response:any) => {
     const token = await handleOAuthGoogleLogin(response)
     if(token){
       executeLocalStorageAction({actionType:"set",itemName:LocalStorageItems.Token,item:token})
       executeLocalStorageAction({actionType:"set",itemName:LocalStorageItems.OAuth,item:response})
       toast.success('Login Successful')
+      setAuth({isAuthenticated:true})
+      window.location.reload()
     }else{
       toast.error('Login Failed. Try again')
     }
-   
   };
   return (
     <>

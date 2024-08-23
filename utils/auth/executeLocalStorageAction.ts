@@ -1,6 +1,7 @@
 export enum LocalStorageItems{
     OAuth="oauth",
     Token="token",
+    LoginTime="in_ty"
 }
 interface Params{
     actionType:"set"|"get"|"remove"

@@ -15,7 +15,6 @@ export const getCollegeDetails = async (collegeId: string) =>
           _id,
           minPrice
         }`);
-      console.log(college)
       return college;
     },
   );

@@ -22,17 +22,17 @@ export default function RootLayout({
   return (
     <html lang="en">
     <body className={inter.className}>
+          <RecoilRootProvider>
       <ReactQueryProvider>
         <GoogleOAuthProviderComponent>
-          <RecoilRootProvider>
             <NextUIProvider>
               <Navbar />
-              {children}
-              <Toaster />
+              {children} 
             </NextUIProvider>
-          </RecoilRootProvider>
         </GoogleOAuthProviderComponent>
       </ReactQueryProvider>
+          </RecoilRootProvider>
+      <Toaster />
     </body>
   </html>
   );

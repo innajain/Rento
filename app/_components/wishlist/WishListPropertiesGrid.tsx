@@ -1,42 +1,46 @@
-"use client";
-
-import { getAllWishListedProperties } from "@/actions/wishlist/getAllWishListedProperties";
-import { useCheckAuth } from "@/utils/auth/hooks/useCheckAuth";
-import { useEffect, useState } from "react";
-import { Toaster } from "react-hot-toast";
-import { Card, CardBody } from "@nextui-org/react";
+"use client"
+import { Card, CardBody, Skeleton } from "@nextui-org/react";
 import Image from "next/image";
-
+import CustomCarousel from "../carousel/Carousel";
+import { getAllWishListedProperties } from "@/actions/wishlist/getAllWishListedProperties";
+import { getLocalStorageToken } from "@/actions/utils/getLocalStorageToken";
+import { useAuthenticatedQuery } from "@/utils/hooks/useAuthenticatedQuery";
 export default function WishListPropertiesGrid() {
-  const [wishlistProperties, setWishlistProperties] = useState<any[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const getWishListedProperties = useCheckAuth({
-    action: getAllWishListedProperties,
-    errorToast: "Error getting wishlisted properties",
-    successToast: "Wishlisted properties fetched",
+  const { data, isLoading, isSuccess } = useAuthenticatedQuery({
+    queryKey: ["wishListedProperties"],
+    queryFunc: async () => {
+      const token = getLocalStorageToken();
+      return await getAllWishListedProperties({ token });
+    },
   });
-  useEffect(() => {
-    const fn = async () => {
-      setLoading(true);
-      const res = await getWishListedProperties({});
-      setWishlistProperties(res);
-      setLoading(false);
-    };
-    fn();
-  }, []);
-  return (
-    <>
-      {wishlistProperties?.map((property, i) => {
-        return (
-            <Card key={i}>
-                <CardBody>
-                    <Image src={property} alt="whishListImage" />
-                </CardBody>
-
-            </Card>
-        )
-      })}
-      <Toaster />
-    </>
-  );
+ return (
+ <Skeleton isLoaded={!isLoading}>
+  {
+    isSuccess && data && data.length>0 && data.map((property: any, i: number) => {
+      const parsedImages = JSON.parse(property.propertyImages);
+      return (
+        <Card key={i}>
+          <CardBody>
+            <CustomCarousel>
+              {parsedImages.map((image: string, j: number) => (
+                <Image
+                  key={j}
+                  src={image}
+                  alt="Property Image"
+                  width={500}
+                  height={500}
+                />
+              ))}
+            </CustomCarousel>
+          </CardBody>
+        </Card>
+      );
+  })}
+</Skeleton>
+ )
+   
 }
+
+  
+
+ 
