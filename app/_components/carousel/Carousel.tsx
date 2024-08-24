@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect, ReactNode } from 'react';
 import './customCarousel.css';
 
 interface CustomCarouselProps {
-  children: ReactNode[];
+  children: ReactNode[]|any;
   carouselClassName?: string;
   innerClassName?: string;
   itemClassName?: string;

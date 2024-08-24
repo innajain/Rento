@@ -57,13 +57,13 @@ function CollegeProperty(props:Props) {
   };
 const iconSize = 24
   return (
-    <Card className="max-w-full ">
-    <CardBody className="flex flex-row gap-4">
-      <CustomCarousel carouselStyle={{maxWidth:"15rem"}}>
+    <Card>
+    <CardBody className="flex md:flex-col lg:flex-row flex-row gap-4">
+      <CustomCarousel carouselClassName="lg:max-w-[20rem] max-w-[20rem] md:max-w-[28rem]">
         {
           props.property?.rooms?.[0]?.images?.map((image,index)=>{
             return (
-              <Image alt="property-grid-image" width={1000} height={1000} src={urlForImage(image)} key={index} />
+              <Image className="md:object-cover md:max-h-[20rem]" alt="property-grid-image" width={1000} height={1000} src={urlForImage(image)} key={index} />
             )
           })
         }
