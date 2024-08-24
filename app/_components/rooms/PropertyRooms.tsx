@@ -28,7 +28,7 @@ const RoomInfo = styled.div`
 `;
 const StyledChip = ({text}:{text:string})=>{
     return(
-        <div className="w-full bg-background flex items-center gap-2 rounded-lg text-center  p-2">
+        <div className="w-full bg-background text-xs xl:text-sm sm:text-medium md:text-medium flex items-center gap-2 rounded-lg text-center  p-2">
            <CircleCheckBig className="text-primary" size={16}/>
           {text}
         </div>
@@ -71,16 +71,16 @@ export default function PropertyRooms(props:Props) {
     addToWishListMutation.mutate(params)
   }
   return (
-    <div className="p-4  flex flex-col gap-8 mt-2">
+    <div className=" flex flex-col gap-8 mt-2">
         <span className="text-lg tracking-wider">Showing <span className="text-primary bg-background p-1 rounded-full font-bold">{rooms.length}</span>  Results</span>
-    <div className=" py-2 px-2 xl:grid-cols-3 bg-background rounded-lg lg:grid-cols-2 gap-2">
+    <div className="py-2 p-1 grid xl:grid-cols-3 bg-background rounded-lg lg:grid-cols-2 gap-2">
     {
             rooms?.map((room,i)=>{
                 const [accomodationType,roomType] = getRoomType(room.roomType??'').split('-')
                 return(
-                    <Card className="max-w-[45vw]" key={i} >
+            <Card key={i} >
                 <CardBody className="flex flex-row gap-2">
-                <CustomCarousel carouselStyle={{maxWidth:"20rem"}}>
+                <CustomCarousel carouselClassName="max-w-[15rem] sm:max-w-[18rem]">
                         {room.images?.map((image,i)=>
                             <Image key={i} alt="room-image" src={urlForImage(image)} width={400} height={400} />
                         )}
