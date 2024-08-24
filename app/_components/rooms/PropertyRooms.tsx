@@ -6,12 +6,12 @@ import { urlForImage } from "@/utils/image"
 import { Button, Card, CardBody, Chip } from "@nextui-org/react"
 import styled from "styled-components"
 import { getRoomType } from "@/utils/rooms/hooks/getRoomType"
-import { addToWishlist } from "@/actions/wishlist/addToWishlist"
 import { useMutation } from "@tanstack/react-query"
 import { getLocalStorageToken } from "@/actions/utils/getLocalStorageToken"
 import toast from "react-hot-toast"
 import { useHandleError } from "@/actions/error/useHandleError"
 import { CircleCheckBig } from "lucide-react"
+import { addToWishlist } from "@/actions/wishlist/addToWishlist"
 
 interface Props{
     rooms:Properties['rooms']
