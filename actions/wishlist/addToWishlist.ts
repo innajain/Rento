@@ -3,6 +3,7 @@ import { connectToDb } from "@/utils/connectToDb"
 import { handleAction } from "@/utils/handleAction";
 import { authenticateUser } from "../utils/authenticateUser";
 import { ErrorCode } from "../error/types";
+import { revalidatePath } from "next/cache";
 
 export interface WishListItem {
     propertyName: string;
@@ -18,7 +19,11 @@ export const addToWishlist = async ({ propertyName, propertyType,token, roomDeta
         const pool = await connectToDb()
         const userId = await authenticateUser({token:token??''})
         if(!userId) throw new Error(ErrorCode.UNAUTHORIZED)
-        const [rows] = await pool.query<any[]>("INSERT INTO wishlists (propertyName, propertyType, userId, roomDetails, isRoom,propertyId,propertyImages) VALUES (?,?,?,?,?,?,?)", [propertyName, propertyType,userId, roomDetails??'', isRoom,propertyId,propertyImages])  
+        const [rows] = await pool.query<any[]>("INSERT INTO wishlists (propertyName, propertyType, userId, roomDetails, isRoom,propertyId,propertyImages) VALUES (?,?,?,?,?,?,?)", [propertyName, propertyType,userId, roomDetails??'', isRoom,propertyId,propertyImages])
+        if(rows.affectedRows===0){
+            throw new Error(ErrorCode.INTERNAL_SERVER_ERROR)  
+        }
+        revalidatePath('/wishlist')
     }
 )
       

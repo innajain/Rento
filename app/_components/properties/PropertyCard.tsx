@@ -75,9 +75,9 @@ export default function PropertyCard(props:Props) {
             </div>
             <div className="flex flex-col gap-4">
               <h1 className="text-3xl">{props.property?.[0].name}</h1>
-              <div className="flex gap-2 items-center bg-gray-200 p-2 rounded-lg">
+              <div className="flex gap-2 items-center bg-background  p-2 rounded-lg">
                 <MapPinCheckInside/>
-                 Within {distanceObj.distance} from {distanceObj.collegeName} college
+                 Within {distanceObj.distance} of {distanceObj.collegeName} college
               </div>
               <div className="grid  bg-gray-100 mt-4 p-3 rounded-lg grid-cols-4">
             {
@@ -89,7 +89,7 @@ export default function PropertyCard(props:Props) {
             }
           </div>
         <div className="flex flex-col gap-4 mt-auto w-full mb-6">
-        <Button onClick={handleAddToWishList} radius="sm" size="lg"  color="primary">
+        <Button onClick={handleAddToWishList} radius="sm" size="lg"  color="secondary">
              Add to WishList
            </Button>
            <Button radius="sm" size="lg"  color="primary">
@@ -100,7 +100,7 @@ export default function PropertyCard(props:Props) {
           </div>
         </CardBody> 
     </Card>
-    <PropertyRooms rooms={props.property?.[0]?.rooms} />
+    <PropertyRooms propertyName={props.property[0].name??''} rooms={props.property?.[0]?.rooms} />
     </div>
    
   )

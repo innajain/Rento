@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect, ReactNode, CSSProperties } from 're
 import './customCarousel.css';
 
 interface CustomCarouselProps {
-  children: ReactNode[] | any[];
+  children: ReactNode[] | any;
   carouselStyle?: CSSProperties;
   innerStyle?: CSSProperties;
   itemStyle?: CSSProperties;

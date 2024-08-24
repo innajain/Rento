@@ -11,9 +11,11 @@ const config: Config = {
     extend: {
       colors: {
         primary: '#FF6F61',
-        secondary: '#D32F2F', 
+        secondary: '#48bb78', 
         accent: '#FFC107', 
         background: '#F9F3F0', 
+        'primary-light': 'rgba(255, 111, 97, 0.5)', 
+        'secondary-light': 'rgba(72, 187, 120, 0.5)',
         'primary-text': '#333333', 
         'secondary-text': '#F5F5F5',
       },

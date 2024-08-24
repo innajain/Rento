@@ -1,4 +1,4 @@
-type RoomType = 
+export type RoomType = 
 | 'pgB1'
 | 'pgB2'
 | 'pgB3'

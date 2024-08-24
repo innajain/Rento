@@ -1,5 +1,4 @@
 "use client"
-import { FilterDefinitionKeys } from "@/utils/filters/availableFilterDefinitions";
 import { collegePropertiesFiltersState } from "@/utils/state/collegePropertiesFiltersState";
 import { FilterDropdownProps } from "@/utils/types/collegePropertiesFilterBarTypes";
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Slider, Button} from "@nextui-org/react";

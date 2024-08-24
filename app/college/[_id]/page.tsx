@@ -24,7 +24,10 @@ export default async function CollegeRoutePage({params}:{params:{_id:string}}) {
    <div className="px-2">
     <CollegeRoutePageBreadCrumb collegeName={college.name} />
     <CollegePropertiesFilterBar/>
+    <div className="p-2 mt-4">
     <PropertyGrid distancesArr={distancesArr} college={college} properties={college.properties as unknown as Properties[]} />
+    </div>
+   
    </div>
     
   )

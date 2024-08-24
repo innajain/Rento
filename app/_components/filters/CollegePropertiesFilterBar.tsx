@@ -14,12 +14,14 @@ export default function CollegePropertiesFilterBar() {
   return (
       <div className="flex mt-4 gap-4 relative">
           {
-            collegePropertiesFilters.map((filter)=>
+            collegePropertiesFilters.map((filter,i)=>
               filter.filterDropDownCustomComponent?
-              <div></div>:
-              <Dropdown>
+              <div key={i}>
+
+              </div>:
+              <Dropdown key={i}>
                 <DropdownTrigger>
-                  <Button>{filter.filterButtonLabel}</Button>
+                  <Button  className="border-primary bg-white border" radius="full" size="sm">{filter.filterButtonLabel}</Button>
                 </DropdownTrigger>
                 <DropdownMenu closeOnSelect={false}>
                   {

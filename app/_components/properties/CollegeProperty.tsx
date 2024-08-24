@@ -80,7 +80,7 @@ function CollegeProperty(props:Props) {
           </InfoContainer>
           <AreaContainer>
             <LandPlot />
-            <InfoText>{props.property.area.areaName as string}</InfoText>
+            <InfoText>{props.property?.area?.areaName as string}</InfoText>
           </AreaContainer>
           <div className="grid grid-cols-4">
             {
@@ -93,7 +93,7 @@ function CollegeProperty(props:Props) {
 
           </div>
         <div className="mt-auto mb-6 flex flex-col gap-4">
-        <Button  radius="sm" size="lg" className="text-xl text-gray-800"> 
+        <Button  radius="sm" size="lg" className="text-xl bg-secondary text-white"> 
             Rooms From &#8377;{props.property.minPrice}
           </Button>
         <div  className="b-4 flex w-full justify-center">

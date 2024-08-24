@@ -5,7 +5,6 @@ import { LoginModalAtom } from "@/utils/state/LoginModalAtom";
 import { authAtom } from "@/utils/auth/authAtom";
 import { getLocalStorageToken } from "@/actions/utils/getLocalStorageToken";
 import { ErrorCode } from "@/actions/error/types";
-import { useRouter } from "next/router";
 
 interface UseAuthenticatedQueryOptions<TQueryFnData, TError, TData> extends UseQueryOptions<TQueryFnData, TError, TData> {
   queryFunc: () => Promise<TQueryFnData>;

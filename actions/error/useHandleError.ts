@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import { authAtom } from "@/utils/auth/authAtom"
 import { useRecoilState } from "recoil"
 import { ErrorCode } from "./types"
