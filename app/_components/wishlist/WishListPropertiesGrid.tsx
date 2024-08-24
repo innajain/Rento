@@ -26,7 +26,7 @@ export default function WishListPropertiesGrid() {
   });
  return (
  <Skeleton isLoaded={!isLoading}>
-<div className="p-[5rem] mt-[1rem] mx-[2rem] h-screen rounded-2xl xl:gird-cols-3 lg:grid-cols-2  bg-background">
+<div className="gap-2 p-1 grid-cols-1 lg:p-1 md:mx-2 md:p-3 mt-[1rem] grid md:grid-cols-2 lg:mx-[2rem] rounded-2xl lg:grid-cols-2   bg-background">
   {
     isSuccess && data && data.length>0 && data.map((property: any, i: number) => {
       const parsedImages = JSON.parse(property.propertyImages);
@@ -35,38 +35,38 @@ export default function WishListPropertiesGrid() {
       const roomOptionsArray = parsedPropertyTypesArray.map((property:RoomType)=> getRoomType(property).split('-')[1] )
 
       return (
-        <Card className="max-w-[45vw] w-full" key={i}>
-          <CardBody className="flex flex-row gap-4">
-            <CustomCarousel carouselStyle={{maxWidth:"20rem"}}>
+        <Card  key={i}>
+          <CardBody className="flex gap-4 flex-row md:flex-col md:gap-4 lg:flex-row lg:gap-4">
+          <CustomCarousel carouselClassName="lg:max-w-[20rem] max-w-[20rem] lg:h-[20rem] md:max-w-[30rem]">
               {parsedImages.map((image: string, j: number) => (
                 <Image
                   key={j}
                   src={image}
                   alt="Property Image"
-                  width={500}
-                  height={500}
+                  width={1000}
+                  height={1000}
                 />
               ))}
             </CustomCarousel>
-        <div className="flex flex-col w-full">
+        <div className="flex lg:w-full w-full  flex-col md:gap-2 justify-between">
         <div className="flex flex-col gap-4">
-              <span className="text-2xl">{property.propertyName}</span>
-              <StyledSpan className="bg-background">
+              <span className="text-2xl md:text-lg">{property.propertyName}</span>
+              <StyledSpan className="bg-background md:text-sm">
                 <CircleCheckBig className="text-primary" />
                 {accomodationType}
               </StyledSpan>
               {
                 roomOptionsArray.map((option:string,i:number)=>
-                 <StyledSpan className="bg-background">
+                 <StyledSpan className="bg-background md:text-sm">
                 <CircleCheckBig className="text-primary" />
                    {option}
                  </StyledSpan>
                    )
               }
             </div>
-            <div className="flex w-full  mt-auto flex-col gap-2 mb-4">
+            <div className="flex w-full mb-4 flex-col gap-2 ">
               <RemoveFromWihsListButton radius="sm" size="lg" propertyId={property.propertyId}/>
-              <Button radius="sm" className="text-white" color="primary" size="lg">
+              <Button radius="sm" className="text-white " color="primary" size="lg">
                 View Details
               </Button>
             </div>

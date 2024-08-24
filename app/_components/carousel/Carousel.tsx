@@ -1,43 +1,35 @@
 "use client";
-import React, { useState, useRef, useEffect, ReactNode, CSSProperties } from 'react';
+import React, { useState, useRef, useEffect, ReactNode } from 'react';
 import './customCarousel.css';
 
 interface CustomCarouselProps {
-  children: ReactNode[] | any;
-  carouselStyle?: CSSProperties;
-  innerStyle?: CSSProperties;
-  itemStyle?: CSSProperties;
-  arrowStyle?: CSSProperties;
-  dotStyle?: CSSProperties;
-  activeDotStyle?: CSSProperties;
+  children: ReactNode[];
+  carouselClassName?: string;
+  innerClassName?: string;
+  itemClassName?: string;
+  arrowClassName?: string;
+  dotClassName?: string;
+  activeDotClassName?: string;
 }
 
 const CustomCarousel: React.FC<CustomCarouselProps> = ({
   children,
-  carouselStyle,
-  innerStyle,
-  itemStyle,
-  arrowStyle,
-  dotStyle,
-  activeDotStyle,
+  carouselClassName,
+  innerClassName,
+  itemClassName,
+  arrowClassName,
+  dotClassName,
+  activeDotClassName,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const slideRef = useRef<HTMLDivElement>(null);
 
   const nextSlide = () => {
-    if (currentIndex < children.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    } else {
-      setCurrentIndex(0);
-    }
+    setCurrentIndex((prevIndex) => (prevIndex < children.length - 1 ? prevIndex + 1 : 0));
   };
 
   const prevSlide = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    } else {
-      setCurrentIndex(children.length - 1);
-    }
+    setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : children.length - 1));
   };
 
   const goToSlide = (index: number) => {
@@ -51,26 +43,25 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({
   }, [currentIndex]);
 
   return (
-    <div className="carousel" style={carouselStyle}>
-      <div className="carousel-inner" style={innerStyle} ref={slideRef}>
+    <div className={`carousel ${carouselClassName}`}>
+      <div className={`carousel-inner ${innerClassName}`} ref={slideRef}>
         {React.Children.map(children, (child, index) => (
-          <div className="carousel-item" style={itemStyle} key={index}>
+          <div className={`carousel-item ${itemClassName}`} key={index}>
             {child}
           </div>
         ))}
       </div>
-      <button className="carousel-arrow left-arrow" style={arrowStyle} onClick={prevSlide}>
+      <button className={`carousel-arrow left-arrow ${arrowClassName}`} onClick={prevSlide}>
         &#8249;
       </button>
-      <button className="carousel-arrow right-arrow" style={arrowStyle} onClick={nextSlide}>
+      <button className={`carousel-arrow right-arrow ${arrowClassName}`} onClick={nextSlide}>
         &#8250;
       </button>
       <div className="carousel-dots">
-        {children?.map((_, index) => (
+        {children.map((_, index) => (
           <button
             key={index}
-            className={`carousel-dot ${index === currentIndex ? 'active' : ''}`}
-            style={index === currentIndex ? activeDotStyle : dotStyle}
+            className={`carousel-dot ${index === currentIndex ? activeDotClassName : dotClassName}`}
             onClick={() => goToSlide(index)}
           />
         ))}

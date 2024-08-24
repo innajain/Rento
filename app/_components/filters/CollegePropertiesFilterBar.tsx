@@ -12,7 +12,7 @@ export default function CollegePropertiesFilterBar() {
   const {handleFilter} = useFilter<Properties>({primaryKey:FilterPrimaryKeys.Properties})
   const selectedOptionStyles ="bg-primary text-white hover:bg-primary"
   return (
-      <div className="flex mt-4 gap-4 relative">
+      <div className="flex overflow-x-scroll mt-4 gap-4 relative">
           {
             collegePropertiesFilters.map((filter,i)=>
               filter.filterDropDownCustomComponent?

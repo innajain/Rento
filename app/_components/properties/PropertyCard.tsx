@@ -79,7 +79,7 @@ export default function PropertyCard(props:Props) {
                 <MapPinCheckInside/>
                  Within {distanceObj.distance} of {distanceObj.collegeName} college
               </div>
-              <div className="grid  bg-gray-100 mt-4 p-3 rounded-lg grid-cols-4">
+              <div className="flex gap-2 overflow-x-scroll bg-gray-100 mt-4 p-3 rounded-lg ">
             {
               props.property?.[0]?.amenities?.map((amenity, index) => {
                 return (

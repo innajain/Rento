@@ -34,10 +34,10 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className="flex justify-between p-3 bg-background items-center px-12 sticky">
+    <div className="flex justify-between p-3 bg-background items-center sticky">
       <div>ROR</div>
       <div className="flex gap-4">
-      <Button endContent={<ChevronDown />} startContent={<Headset />}>
+      <Button  endContent={<ChevronDown />} startContent={<Headset />}>
           Support
         </Button>
       <Link href={"/wishlist"}>

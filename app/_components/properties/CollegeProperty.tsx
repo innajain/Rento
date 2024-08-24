@@ -1,6 +1,6 @@
 "use client"
 import { Properties } from "@/utils/types/sanity.types"
-import { PersonStanding } from "lucide-react"
+import { icons, PersonStanding } from "lucide-react"
 import { memo } from 'react';
 import { Button, Card, CardBody } from "@nextui-org/react";
 import CustomCarousel from "../carousel/Carousel";
@@ -20,26 +20,22 @@ const Container = styled.div`
 `;
 
 const PropertyName = styled.span`
-  font-size: 2rem;
 `;
 
 const InfoContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #f3f4f6;
   border-radius: 0.5rem;
   padding: 0.25rem 0.5rem;
 `;
 const InfoText = styled.span`
-  font-size: 0.75rem;
 `;
 const AreaContainer = styled.div`
   display: flex;
   max-width: 10rem;
   align-items: center;
   gap: 0.5rem;
-  background-color: #f3f4f6;
   border-radius: 0.5rem;
   padding: 0.25rem 0.5rem;
 `;
@@ -59,11 +55,11 @@ function CollegeProperty(props:Props) {
 
     router.push(`/property/${props.property._id}`);
   };
-
+const iconSize = 24
   return (
     <Card className="max-w-full ">
     <CardBody className="flex flex-row gap-4">
-      <CustomCarousel carouselStyle={{maxWidth:"20rem"}}>
+      <CustomCarousel carouselStyle={{maxWidth:"15rem"}}>
         {
           props.property?.rooms?.[0]?.images?.map((image,index)=>{
             return (
@@ -73,31 +69,31 @@ function CollegeProperty(props:Props) {
         }
       </CustomCarousel>
       <Container>
-          <PropertyName>{props.property.name}</PropertyName>
-          <InfoContainer>
-            <PersonStanding size={20} />
-            <InfoText>Within {props.distance} of {props.collegeName} college</InfoText>
+          <PropertyName className="text-lg lg:text-xl" >{props.property.name}</PropertyName>
+          <InfoContainer className="bg-background">
+            <PersonStanding className="text-primary" size={iconSize} />
+            <InfoText className="text-[0.7rem]" >Within {props.distance} of {props.collegeName}</InfoText>
           </InfoContainer>
-          <AreaContainer>
-            <LandPlot />
+          <AreaContainer className="bg-background text-xs">
+            <LandPlot className="text-primary" size={iconSize} />
             <InfoText>{props.property?.area?.areaName as string}</InfoText>
           </AreaContainer>
-          <div className="grid grid-cols-4">
+          <div className="flex gap-2 overflow-x-scroll">
             {
               props.property?.amenities?.map((amenity, index) => {
                 return (
-                  <Chip startContent={<Check size={14} />} key={index} className="bg-white border-primary border text-sm rounded-lg" >{amenity.amenityName}</Chip>
+                  <Chip startContent={<Check size={14} />} key={index} className="bg-white border-primary border  text-xs rounded-lg" >{amenity.amenityName}</Chip>
                 )
               })
             }
 
           </div>
-        <div className="mt-auto mb-6 flex flex-col gap-4">
-        <Button  radius="sm" size="lg" className="text-xl bg-secondary text-white"> 
+        <div className="mt-auto mb-4 flex flex-col gap-2">
+        <Button  radius="sm" size="lg" className="text-md bg-secondary text-white"> 
             Rooms From &#8377;{props.property.minPrice}
           </Button>
         <div  className="b-4 flex w-full justify-center">
-            <Button onClick={handleClick} radius="sm" className="w-full" size="lg" color="primary">
+            <Button onClick={handleClick} radius="sm" className="w-full text-md" size="lg" color="primary">
                View Details
             </Button>
         </div>

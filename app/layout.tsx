@@ -25,9 +25,11 @@ export default function RootLayout({
           <RecoilRootProvider>
       <ReactQueryProvider>
         <GoogleOAuthProviderComponent>
-            <NextUIProvider>
-              <Navbar />
-              {children} 
+            <NextUIProvider>   
+          <div className="overflow-x-hidden">
+          <Navbar />
+          {children} 
+          </div> 
             </NextUIProvider>
         </GoogleOAuthProviderComponent>
       </ReactQueryProvider>

@@ -31,7 +31,7 @@ export default function HomePageSearchForm(props:Props) {
 
   return (
     <form  className="flex mt-[5rem] gap-2 relative w-[50rem] mx-auto "> 
-  <div className="w-full flex flex-col">
+  <div className="flex pl-2 w-[99vw] lg:w-full md:w-[85vw] flex-col">
   <Input onChange={(e)=>setCollegeName(e.target.value)} isClearable
         onClear={()=>setCollegeName("")}
         radius="lg"
@@ -60,7 +60,9 @@ export default function HomePageSearchForm(props:Props) {
         placeholder="Type to search..."
         startContent={
           <SearchIcon className="text-primary mb-0.5 dark:text-white/90  pointer-events-none flex-shrink-0" />
-        }  size="lg"/>
+        }  
+        size="lg"
+        />
     {!!collegeName && 
      <div className="top-[100%] mt-4 absolute w-full max-w-[43rem] z-[100] p-2 rounded-xl shadow-xl border border-primary bg-white flex flex-col gap-4">
          {filteredColleges.map((collegeNameAndIdIObj, index) => (
@@ -71,7 +73,7 @@ export default function HomePageSearchForm(props:Props) {
 
   </div>
    
-   <Button className="bg-primary text-white" size="lg">
+   <Button className="bg-primary opacity-0 md:opacity-100 text-white" size="lg">
         Search
     </Button>
     </form>

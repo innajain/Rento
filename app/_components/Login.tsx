@@ -47,7 +47,7 @@ export default function Login(params: Params) {
       <Modal isOpen={loginModalState.isOpen}  onOpenChange={() => {
           setLoginModalState({ isOpen: !loginModalState.isOpen });
           if (onOpenChange) onOpenChange();
-        }} placement="top-center">
+        }} placement="center">
         <ModalContent>
           {(onClose) => (
             <>
