@@ -28,7 +28,7 @@ const showOff = [
 
 const perfectAccomodationShowOff = [
   {
-    label: "One click, hassle free bookings",
+    label: "One click booking",
     description: "Book your perfect accommodation instantly",
     icon: <CheckCircle size={iconSize} className={iconColor} />,
   },
@@ -55,7 +55,7 @@ export default function HomePageGrid() {
       {/* Rendering showOff array */}
       <div className='flex flex-col gap-12'>
         <h2 className="text-xl font-bold">Why Choose Us</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {showOff.map((item, index) => (
             <div key={index} className="flex flex-col items-start gap-6 p-6 rounded-lg bg-white shadow-lg">
               <div className="flex-shrink-0">
@@ -73,7 +73,7 @@ export default function HomePageGrid() {
       {/* Rendering perfectAccomodationShowOff array */}
       <div className='flex flex-col gap-12'>
         <h2 className="text-xl font-bold mb-4">Perfect Accommodation ShowOff</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {perfectAccomodationShowOff.map((item, index) => (
             <div key={index} className="flex flex-col gap-6 p-6 rounded-lg bg-white shadow-lg">
               <div className="flex-shrink-0">

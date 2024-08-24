@@ -64,7 +64,7 @@ export default function HomePageSearchForm(props:Props) {
         size="lg"
         />
     {!!collegeName && 
-     <div className="top-[100%] mt-4 absolute w-full max-w-[43rem] z-[100] p-2 rounded-xl shadow-xl border border-primary bg-white flex flex-col gap-4">
+     <div className="top-[100%] max-h-[50vh] overflow-y-scroll mt-4 absolute w-full max-w-[43rem] z-[100] p-2 rounded-xl shadow-xl border border-primary bg-white flex flex-col gap-4">
          {filteredColleges.map((collegeNameAndIdIObj, index) => (
           <Link href={`/college/${collegeNameAndIdIObj.collegeId}`} className="hover:bg-gray-200 p-3 rounded-lg" key={index}>{collegeNameAndIdIObj.collegeName}</Link>
         ))}
