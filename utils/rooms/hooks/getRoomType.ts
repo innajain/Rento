@@ -16,7 +16,7 @@ export type RoomType =
 export const getRoomType = (roomType:RoomType)=>{
     switch(roomType){
         case 'pgB1':
-            return 'PG-Sigle Bed'
+            return 'PG-Single Bed'
         case 'pgB2':
             return 'PG-Double Bed'
         case 'pgB3':

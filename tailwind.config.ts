@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import {nextui} from "@nextui-org/react"
+import defaultTheme from "tailwindcss/defaultTheme"
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -25,6 +26,11 @@ const config: Config = {
         'accent-gradient': 'linear-gradient(45deg, #FFC107, #FF9A8B)',
       },
     },
+    screens:{
+      '942':'942px',
+      '768':'768px',
+      ...defaultTheme.screens
+    }
   },
   darkMode: "class",
   plugins: [nextui()],
