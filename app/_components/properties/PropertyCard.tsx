@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { getLocalStorageToken } from "@/actions/utils/getLocalStorageToken";
 import { useHandleError } from "@/actions/error/useHandleError";
 import { addToWishlist } from "@/actions/wishlist/addToWishlist";
+import { executeLocalStorageAction, LocalStorageItems } from "@/utils/auth/executeLocalStorageAction";
 
 
 interface Props{
@@ -25,10 +26,8 @@ export default function PropertyCard(props:Props) {
   const [distanceObj, setDistanceObj] = useState<DistanceObj>({ distance: "", collegeName: "" });
   const {handleError} = useHandleError()
   useEffect(() => {
-    const storedDistanceObj = localStorage.getItem('distance');
-    if (storedDistanceObj) {
-      setDistanceObj(JSON.parse(storedDistanceObj) as DistanceObj);
-    }
+    const storedDistanceObj:DistanceObj = executeLocalStorageAction({actionType:"get",itemName:LocalStorageItems.Distance})
+    setDistanceObj(storedDistanceObj)
   }, []);
   const addToWishListMutation = useMutation({
     mutationFn:async ()=> {
@@ -37,6 +36,7 @@ export default function PropertyCard(props:Props) {
         propertyType:JSON.stringify(props.property[0].propertyType),
         isRoom:false,
         propertyId:props.property[0]._id,
+        //@ts-ignore
         propertyImages:JSON.stringify(props.property[0].rooms?.[0].images?.map((image)=>urlForImage(image))),
         token:getLocalStorageToken()
       })
@@ -65,11 +65,13 @@ export default function PropertyCard(props:Props) {
          <CardBody className="flex flex-col md:flex-row gap-6 ">
             <CustomCarousel carouselClassName="md:max-w-[30rem] ">
             {(props.property.length > 0 && Array.isArray(props.property[0].rooms?.[0]?.images) ? props.property[0].rooms[0].images : []).map((image, i) =>
+             //@ts-ignore
             image!==undefined && <Image className="object-cover h-[25rem] w-full" key={i}  alt="img" src={urlForImage(image)} width={1000} height={1000}/>
             )}
             </CustomCarousel>
             <div className=" hidden lg:opacity-100 lg:grid lg:grid-cols-2 lg:gap-4">
               {props.property?.[0].rooms?.[0].images?.slice(0,4).map((image,i)=>
+               //@ts-ignore
                <Image key={i} className="w-[10.8rem]" alt="small-property-image" src={urlForImage(image)} height={500} width={500} />
               )}
             </div>

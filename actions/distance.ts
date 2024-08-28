@@ -4,8 +4,8 @@ import { handleAction } from "@/utils/handleAction"
 import { Geopoint } from "@/utils/types/sanity.types"
 
 interface Params{
-    origin?:Geopoint
-    destination?:Geopoint
+    origin:Geopoint
+    destination:Geopoint
 
 }
 export const getDistanceFromCollege = async (params:Params)=>handleAction(async()=>{

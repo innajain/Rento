@@ -1,7 +1,9 @@
+"use client"
 export enum LocalStorageItems{
     OAuth="oauth",
     Token="token",
-    LoginTime="in_ty"
+    LoginTime="in_ty",
+    Distance="distance"
 }
 interface Params{
     actionType:"set"|"get"|"remove"
@@ -9,6 +11,7 @@ interface Params{
     item?:unknown
 }
 export const executeLocalStorageAction = ({ actionType, itemName, item }: Params) => {
+    if(typeof window!=="undefined"){
     switch (actionType) {
         case "set":
             localStorage.setItem(itemName, JSON.stringify(item));
@@ -21,4 +24,5 @@ export const executeLocalStorageAction = ({ actionType, itemName, item }: Params
         default:
             throw new Error(`Unsupported action type: ${actionType}`);
     }
+}
 };

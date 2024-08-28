@@ -10,7 +10,6 @@ import { FilterPrimaryKeys } from "@/utils/filters/types/types";
 
 export default function CollegePropertiesFilterBar() {
   const {handleFilter} = useFilter<Properties>({primaryKey:FilterPrimaryKeys.Properties})
-  const selectedOptionStyles ="bg-primary text-white hover:bg-primary"
   return (
       <div className="flex overflow-x-scroll mt-4 gap-4 relative">
           {

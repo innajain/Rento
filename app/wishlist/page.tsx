@@ -1,9 +1,6 @@
 
 import WishListPropertiesGrid from "../_components/wishlist/WishListPropertiesGrid";
-
-export default  async function WishListRoutePage() {
-
-  
+export default  function WishListRoutePage() {
   return (
     <div>
         <WishListPropertiesGrid/>

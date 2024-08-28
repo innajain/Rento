@@ -14,7 +14,7 @@ export const removeFromWishlist = async ({ propertyId, token }: RemoveWishListIt
     const pool = await connectToDb();
     const userId = await authenticateUser({ token: token ?? '' });
     if (!userId) throw new Error(ErrorCode.UNAUTHORIZED);
-    const [result] = await pool.query<any[]>("DELETE FROM wishlists WHERE propertyId = ? AND userId = ?", [propertyId, userId]);
+    const [result]: any = await pool.query<any[]>("DELETE FROM wishlists WHERE propertyId = ? AND userId = ?", [propertyId, userId]);
     if (result.affectedRows === 0) {
         throw new Error(ErrorCode.NOT_FOUND);
     }

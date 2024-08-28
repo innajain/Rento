@@ -58,7 +58,7 @@ const CustomCarousel: React.FC<CustomCarouselProps> = ({
         &#8250;
       </button>
       <div className="carousel-dots">
-        {children.map((_, index) => (
+        {children.map((_: any, index:number) => (
           <button
             key={index}
             className={`carousel-dot ${index === currentIndex ? activeDotClassName : dotClassName}`}

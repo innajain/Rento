@@ -57,7 +57,7 @@ export default function WishListPropertiesGrid() {
               </StyledSpan>
               {
                 roomOptionsArray.map((option:string,i:number)=>
-                 <StyledSpan className="bg-background md:text-sm">
+                 <StyledSpan key={i} className="bg-background md:text-sm">
                 <CircleCheckBig className="text-primary" />
                    {option}
                  </StyledSpan>

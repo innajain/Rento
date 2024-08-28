@@ -72,7 +72,7 @@ export default function PropertyRooms(props:Props) {
   }
   return (
     <div className=" flex flex-col gap-8 mt-2">
-        <span className="text-lg tracking-wider">Showing <span className="text-primary bg-background p-1 rounded-full font-bold">{rooms.length}</span>  Results</span>
+        <span className="text-lg tracking-wider">Showing <span className="text-primary bg-background p-1 rounded-full font-bold">{rooms?.length}</span>  Results</span>
     <div className="py-2 p-1 grid xl:grid-cols-3 bg-background rounded-lg md:grid-cols-2 gap-2">
     {
             rooms?.map((room,i)=>{
@@ -82,6 +82,7 @@ export default function PropertyRooms(props:Props) {
                 <CardBody className="flex 768:flex-col 942:flex-row flex-row gap-2">
                 <CustomCarousel carouselClassName="max-w-[15rem] sm:max-w-[22rem] 768:max-w-full 942:max-w-[20rem] ">
                         {room.images?.map((image,i)=>
+                         //@ts-ignore
                             <Image key={i} className="h-full"  alt="room-image" src={urlForImage(image)} width={400} height={400} />
                         )}
                     </CustomCarousel>
@@ -100,6 +101,7 @@ export default function PropertyRooms(props:Props) {
                 <Button size="lg" radius="none" onClick={()=>handleAddToWishList({
                     roomType:room.roomType??'',
                     roomId:room._key,
+                     //@ts-ignore
                     roomImages:room.images?.map((image)=>urlForImage(image))??[]
                 })} color="secondary">
                     Add to wishlist

@@ -12,6 +12,7 @@ import {Chip} from "@nextui-org/react";
 import { Check } from 'lucide-react';
 import { distance } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { executeLocalStorageAction, LocalStorageItems } from "@/utils/auth/executeLocalStorageAction";
 
 const Container = styled.div`
   display: flex;
@@ -48,11 +49,10 @@ interface Props{
 function CollegeProperty(props:Props) {
   const router = useRouter()
   const handleClick = async () => {
-    localStorage.setItem('distance', JSON.stringify({
+    executeLocalStorageAction({actionType: 'set',itemName:LocalStorageItems.Distance,item:{
       distance: props.distance,
       collegeName: props.collegeName
-    }));
-
+    }})
     router.push(`/property/${props.property._id}`);
   };
 const iconSize = 24
@@ -63,6 +63,7 @@ const iconSize = 24
         {
           props.property?.rooms?.[0]?.images?.map((image,index)=>{
             return (
+              //@ts-ignore
               <Image className="md:object-cover md:max-h-[20rem]" alt="property-grid-image" width={1000} height={1000} src={urlForImage(image)} key={index} />
             )
           })

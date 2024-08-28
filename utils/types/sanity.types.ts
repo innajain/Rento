@@ -87,7 +87,7 @@ export type Properties = {
     _ref: string
     _type: 'reference'
     _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'areasList'
+    areaName?: string
   }
   location?: Geopoint
   propertyType?: Array<string>

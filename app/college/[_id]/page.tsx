@@ -8,15 +8,14 @@ import { Properties } from "@/utils/types/sanity.types";
 
 export async function generateStaticParams() {
   const collegeIds = await getAllCollegesDetails("_id")
-  return collegeIds
+  return [{_id:"605ef3a5-79ee-4813-bac9-d8151238a51e"}]
 }
 
 export default async function CollegeRoutePage({params}:{params:{_id:string}}) {
   const collegeArr = await getCollegeDetails(params._id)
   const college = collegeArr[0]
-  const propertiesLength = college.properties?.length
   const distancesPromises = college.properties?.map(async(property)=>{
-      const distance = await getDistanceFromCollege({origin:college.location,destination:(property as unknown as Properties).location})
+      const distance = await getDistanceFromCollege({origin:college.location!,destination:(property as unknown as Properties).location!})
       return distance
   })
   const distancesArr:string[] = await Promise.all(distancesPromises || [])
