@@ -19,6 +19,9 @@ const config: Config = {
         'secondary-light': 'rgba(72, 187, 120, 0.5)',
         'primary-text': '#333333', 
         'secondary-text': '#F5F5F5',
+        'landingPage-gray-light':"#F9FAFB",
+        'landingPage-golden':"#C59856",
+
       },
       backgroundImage: {
         'primary-gradient': 'linear-gradient(45deg, #FF6F61, #FF9A8B)',
