@@ -10,7 +10,7 @@ import { fetchR2Data } from "@/actions/cloudflare/fetchR2Data";
 export default async function IndexPage() {
   const colleges = await getAllCollegesDetails()
   const x = await fetchR2Data()
-  console.log(x,"contents are here")
+  console.log(x.filter(obj => obj.images.length === 0), "contents are here")
   return (
     <div className="h-screen">
   <div className="relative">
