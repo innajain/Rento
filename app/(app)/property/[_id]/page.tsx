@@ -1,4 +1,5 @@
 import { getAllPropertiesIds } from "@/actions/properties/getAllPropertiesIds"
+import { getCloudFlareProperty } from "@/actions/properties/getCloudFlareProperty"
 import { getPropertyDetails } from "@/actions/properties/getPropertyDetails"
 import PropertyCard from "@/app/_components/properties/PropertyCard"
 
@@ -11,9 +12,10 @@ export async function generateStaticParams(){
 
 export default async function PropertyRoutePage({params}:{params:{_id:string}}) {
   const property = await getPropertyDetails(params._id)
+  const cloudFlareProperty = await getCloudFlareProperty(property[0].name)
   return (
     <div>
-        <PropertyCard property={property} />
+        <PropertyCard cloudFlareProperty={cloudFlareProperty} property={property} />
     </div>
   )
 }

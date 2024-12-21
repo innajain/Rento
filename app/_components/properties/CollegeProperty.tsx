@@ -13,6 +13,7 @@ import { Check } from 'lucide-react';
 import { distance } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { executeLocalStorageAction, LocalStorageItems } from "@/utils/auth/executeLocalStorageAction";
+import { CloudflareProperty } from "@/utils/types/cloudlflare";
 
 const Container = styled.div`
   display: flex;
@@ -45,6 +46,7 @@ interface Props{
   property:Properties
   collegeName?:string
   distance?:string
+  cloudflareProperty:CloudflareProperty
 }
 function CollegeProperty(props:Props) {
   const router = useRouter()
@@ -61,10 +63,10 @@ const iconSize = 24
     <CardBody className="flex md:flex-col lg:flex-row flex-row gap-4">
       <CustomCarousel carouselClassName="lg:max-w-[20rem] max-w-[20rem] md:max-w-[28rem]">
         {
-          props.property?.rooms?.[0]?.images?.map((image,index)=>{
+          props.cloudflareProperty?.images?.map((image,index)=>{
             return (
               //@ts-ignore
-              <Image className="md:object-cover md:max-h-[20rem]" alt="property-grid-image" width={1000} height={1000} src={urlForImage(image)} key={index} />
+              <Image className="md:object-cover md:max-h-[20rem]" alt="property-grid-image" width={1000} height={1000} src={image} key={index} />
             )
           })
         }

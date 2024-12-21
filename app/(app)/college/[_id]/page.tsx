@@ -1,3 +1,4 @@
+import { fetchR2Data } from "@/actions/cloudflare/fetchR2Data";
 import { getAllCollegesDetails } from "@/actions/colleges/getAllCollegesDetails";
 import { getCollegeDetails } from "@/actions/colleges/getCollegeDetail";
 import { getDistanceFromCollege } from "@/actions/distance";
@@ -19,12 +20,13 @@ export default async function CollegeRoutePage({params}:{params:{_id:string}}) {
       return distance
   })
   const distancesArr:string[] = await Promise.all(distancesPromises || [])
+  const cloudflareProperties = await fetchR2Data()
   return (
    <div className="px-2">
     <CollegeRoutePageBreadCrumb collegeName={college.name} />
     <CollegePropertiesFilterBar/>
     <div className="p-2 mt-4">
-    <PropertyGrid distancesArr={distancesArr} college={college} properties={college.properties as unknown as Properties[]} />
+    <PropertyGrid cloudflareProperties={cloudflareProperties}  distancesArr={distancesArr} college={college} properties={college.properties as unknown as Properties[]} />
     </div>
    
    </div>
