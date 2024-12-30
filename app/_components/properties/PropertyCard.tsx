@@ -1,5 +1,5 @@
 "use client"
-import { Properties } from "@/utils/types/sanity.types";
+import { AmenitiesList, Properties } from "@/utils/types/sanity.types";
 import {Button, Card,CardBody, Chip} from "@nextui-org/react";
 import Image from "next/image";
 import { urlForImage } from "@/utils/image";
@@ -13,12 +13,10 @@ import { getLocalStorageToken } from "@/actions/utils/getLocalStorageToken";
 import { useHandleError } from "@/actions/error/useHandleError";
 import { addToWishlist } from "@/actions/wishlist/addToWishlist";
 import { executeLocalStorageAction, LocalStorageItems } from "@/utils/auth/executeLocalStorageAction";
-import { CloudflareProperty } from "@/utils/types/cloudlflare";
 
 
 interface Props{
     property:Properties[]
-    cloudFlareProperty:CloudflareProperty
 }
 interface DistanceObj {
   distance: string;
@@ -66,13 +64,13 @@ export default function PropertyCard(props:Props) {
        <Card shadow="sm">
          <CardBody className="flex flex-col md:flex-row gap-6 ">
             <CustomCarousel carouselClassName="md:max-w-[30rem] ">
-            {(props.property.length > 0 && Array.isArray(props.cloudFlareProperty.images) ? props.cloudFlareProperty.images : []).map((image, i) =>
+            {(props.property.length > 0 && Array.isArray(props.property[0]?.rooms?.[0]?.images) ? props.property[0]?.rooms?.[0]?.images : []).map((image, i) =>
              //@ts-ignore
             image!==undefined && <Image className="object-cover h-[25rem] w-full" key={i}  alt="img" src={image} width={1000} height={1000}/>
             )}
             </CustomCarousel>
             <div className=" hidden lg:opacity-100 lg:grid lg:grid-cols-2 lg:gap-4">
-              {props.cloudFlareProperty.images?.slice(0,4).map((image,i)=>
+              {props.property[0]?.rooms?.[0]?.images?.slice(0,4).map((image,i)=>
                //@ts-ignore
                <Image key={i} className="w-[10.8rem]" alt="small-property-image" src={image} height={500} width={500} />
               )}
@@ -85,7 +83,7 @@ export default function PropertyCard(props:Props) {
               </div>
               <div className="flex gap-2 overflow-x-scroll bg-gray-100 mt-4 p-3 rounded-lg ">
             {
-              props.property?.[0]?.amenities?.map((amenity, index) => {
+              props.property?.[0]?.amenities?.map((amenity,index) => {
                 return (
                   <Chip startContent={<Check size={14} />} key={index} className="bg-white border-primary border text-sm rounded-lg" >{amenity.amenityName}</Chip>
                 )

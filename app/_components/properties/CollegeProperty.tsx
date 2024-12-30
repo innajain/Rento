@@ -1,6 +1,6 @@
 "use client"
 import { Properties } from "@/utils/types/sanity.types"
-import { icons, PersonStanding } from "lucide-react"
+import { PersonStanding } from "lucide-react"
 import { memo } from 'react';
 import { Button, Card, CardBody } from "@nextui-org/react";
 import CustomCarousel from "../carousel/Carousel";
@@ -10,10 +10,8 @@ import { LandPlot } from 'lucide-react';
 import styled from "styled-components";
 import {Chip} from "@nextui-org/react";
 import { Check } from 'lucide-react';
-import { distance } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { executeLocalStorageAction, LocalStorageItems } from "@/utils/auth/executeLocalStorageAction";
-import { CloudflareProperty } from "@/utils/types/cloudlflare";
 
 const Container = styled.div`
   display: flex;
@@ -46,7 +44,6 @@ interface Props{
   property:Properties
   collegeName?:string
   distance?:string
-  cloudflareProperty:CloudflareProperty
 }
 function CollegeProperty(props:Props) {
   const router = useRouter()
@@ -62,11 +59,10 @@ const iconSize = 24
     <Card>
     <CardBody className="flex md:flex-col lg:flex-row flex-row gap-4">
       <CustomCarousel carouselClassName="lg:max-w-[20rem] max-w-[20rem] md:max-w-[28rem]">
-        {
-          props.cloudflareProperty?.images?.map((image,index)=>{
+        {props.property.rooms?.[0]?.images?.map((image,index)=>{
             return (
               //@ts-ignore
-              <Image className="md:object-cover md:max-h-[20rem]" alt="property-grid-image" width={1000} height={1000} src={image} key={index} />
+              <Image priority className="md:object-cover md:max-h-[20rem]" alt="property-grid-image" width={1000} height={1000} src={urlForImage(image)} key={index} />
             )
           })
         }

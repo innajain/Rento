@@ -3,7 +3,7 @@ import type { Image } from 'sanity'
 
 
 const imageBuilder = createImageUrlBuilder({
-  projectId: "8x7iwdly",
+  projectId: "zvdb59in",
   dataset: "production",
 })
 

@@ -5,7 +5,6 @@ import Image from "next/image";
 import HomeImage from "../public/ror-home-img.png"
 import HomePageNavbar from "./_components/landingPage/HomePageNavbar";
 import MainLandingPage from "./_components/landingPage/MainLandingPage";
-import { fetchR2Data } from "@/actions/cloudflare/fetchR2Data";
 
 export default async function IndexPage() {
   const colleges = await getAllCollegesDetails()
