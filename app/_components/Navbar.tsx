@@ -70,12 +70,12 @@ export default function Navbar() {
               />
             </DropdownTrigger>
             <DropdownMenu variant="flat">
-              <DropdownItem>
+              <DropdownItem key="bookings">
               <Link href={"/bookings"}>
               My bookings
               </Link>
-                </DropdownItem>
-              <DropdownItem color="danger">Logout</DropdownItem>
+                </DropdownItem >
+              <DropdownItem color="danger" key="Logout">Logout</DropdownItem>
             </DropdownMenu>
           </Dropdown>
         )}
