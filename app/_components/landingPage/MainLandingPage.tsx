@@ -89,7 +89,6 @@ export default function MainLandingPage() {
           )
         })}
       </CardsContainer>
-      <WhiteContainer>
         <HeadingDiv>
           <Heading>
             Popular areas for <HighLightedText>students</HighLightedText> in
@@ -137,8 +136,6 @@ export default function MainLandingPage() {
             )
           })}
         </div>
-      </WhiteContainer>
-      <WhiteContainer>
         <HeadingDiv>
           <Heading>
             Book your favourite room in{" "}
@@ -167,8 +164,6 @@ export default function MainLandingPage() {
             )
           })}
         </div>
-      </WhiteContainer>
-      <GrayContainer>
         <div className="flex justify-between items-center">
           <HeadingDiv>
             <Heading>Need Assistance?</Heading>
@@ -192,7 +187,6 @@ export default function MainLandingPage() {
             })}
           </div>
         </div>
-      </GrayContainer>
     </div>
   )
 }

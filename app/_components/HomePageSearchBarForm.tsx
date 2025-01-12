@@ -48,8 +48,8 @@ export default function HomePageSearchForm(props: Props) {
           classNames={{
             label: "text-black/50 dark:text-white/90",
             input: [
-              "bg-transparent",
-              "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+              // "bg-transparent",
+              "placeholder:text-default-700/100 dark:placeholder:text-white/60",
             ],
             innerWrapper: "bg-transparent",
             inputWrapper: [
@@ -67,7 +67,7 @@ export default function HomePageSearchForm(props: Props) {
               "!cursor-text",
             ],
           }}
-          placeholder="Type to search..."
+          placeholder="Search for your desired college, location or PG"
           startContent={
             <SearchIcon className="text-primary mb-0.5 dark:text-white/90  pointer-events-none flex-shrink-0" />
           }
