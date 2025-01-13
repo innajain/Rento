@@ -4,63 +4,52 @@ import Image from "next/image"
 import HomeImage from "../public/ror-home-img.png"
 import HomePageNavbar from "./_components/landingPage/HomePageNavbar"
 import MainLandingPage from "./_components/landingPage/MainLandingPage"
-import BedImage from "../public/bed.png"
-import { X } from "lucide-react"
+import { Card, CardBody } from "@nextui-org/react"
+
+const BG_IMG_HEIGHT_PX = 600
 
 export default async function HomePage() {
   const colleges = await getAllCollegesDetails()
+  const collegeNamesAndIdsArr = colleges.map((college: any) => {
+    return {
+      collegeName: college.name,
+      collegeId: college._id,
+    }
+  })
+
   return (
-    <div>
-      <Image
-        src={HomeImage}
-        alt="home"
-        objectFit="cover"
-        className="absolute -z-20 h-[750px]"
-      />
-      <div className="py-8 px-20">
+    <>
+      <BgImage height={BG_IMG_HEIGHT_PX} />
+      <div className="flex-col flex items-center justify-center">
         <HomePageNavbar />
-        <div className="mt-48 flex-col gap-4 flex items-center justify-center">
-          <div className="text-white flex flex-col gap-4 items-center">
-            <span className="text-6xl font-bold tracking-wider">
-              Student Centric Accommodation Platform
-            </span>
-            <span className="text-3xl  tracking-wider">
-              affordable & comfortable living, just steps away from campus!
-            </span>
-          </div>
-          <HomePageSearchForm
-            collegeNamesAndIdsArr={colleges.map((college: any) => {
-              return {
-                collegeName: college.name,
-                collegeId: college._id,
-              }
-            })}
-          />
+        <HomePageTitle mt={32*4}/>
+        <HomePageSearchForm collegeNamesAndIdsArr={collegeNamesAndIdsArr} mt={14*4}/>
+        <div
+          className="absolute w-full px-40"
+          style={{ top: BG_IMG_HEIGHT_PX }}
+        >
+          <Highlights />
+          <MainLandingPage />
         </div>
       </div>
-      <div className="absolute top-[750px] w-full px-40">
-        <div className="flex gap-20 -translate-y-1/2 justify-between">
-          {highlights.map((x, index) => (
-            <HighlightCard key={x.heading} data={x} />
-          ))}
-        </div>
-        <MainLandingPage />
-      </div>
-    </div>
+    </>
   )
 }
 
 function HighlightCard({ data }: { data: HighlightData }) {
   return (
-    <div className="h-36 w-full rounded-3xl bg-white shadow-xl p-3">
-      <div className="w-full h-full border-2 border-[#D8D8D8] rounded-2xl flex">
-        <Image src={data.image} alt="home" width={116} height={116} />
-        <div className="flex flex-col ml-7 justify-center">
-          <span className="text-2xl font-semibold">{data.heading}</span>
-          <span className="text-[#979797]">{data.description}</span>
+    <Card className="h-32 w-full rounded-3xl p-3" disableRipple>
+      <CardBody className="p-0">
+        <div className="w-full h-full border-1 border-[#D8D8D8] rounded-2xl flex">
+          <Image src={data.image} alt="home" width={116} height={116} />
+          <div className="w-6" />
+          <div className="flex flex-col justify-center">
+            <p className="text-xl font-semibold">{data.heading}</p>
+            <p className="text-[#979797]">{data.description}</p>
+          </div>
         </div>
-      </div>
-    </div>
+      </CardBody>
+    </Card>
   )
 }
 
@@ -87,3 +76,38 @@ const highlights: HighlightData[] = [
     description: "What our students think about us",
   },
 ]
+
+function Highlights() {
+  return (
+    <div className="flex gap-20 -translate-y-1/2 justify-between">
+      {highlights.map((x) => (
+        <HighlightCard key={x.heading} data={x} />
+      ))}
+    </div>
+  )
+}
+
+function HomePageTitle({mt}: {mt?: number}) {
+  mt = mt??0
+  return (
+    <div className="text-white flex flex-col gap-4 items-center h-24" style={{marginTop: mt}}>
+      <span className="text-5xl font-bold tracking-wider">
+        Student Centric Accommodation Platform
+      </span>
+      <span className="text-2xl  tracking-wider">
+        affordable & comfortable living, just steps away from campus!
+      </span>
+    </div>
+  )
+}
+
+function BgImage({height}: {height: number}) {
+  return (
+    <Image
+      src={HomeImage}
+      alt="home"
+      className="absolute -z-20 pointer-events-none select-none"
+      style={{ height }}
+    />
+  )
+}

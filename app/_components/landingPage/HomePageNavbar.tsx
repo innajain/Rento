@@ -43,7 +43,7 @@ export default function HomePageNavbar() {
   }, [])
 
   return (
-    <div className="w-full flex justify-between items-center text-white">
+    <div className="w-full flex justify-between items-center text-white py-8 px-20">
       <Link className="text-3xl font-bold" href="/">
         ROR
       </Link>

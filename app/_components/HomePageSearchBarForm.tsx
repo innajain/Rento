@@ -9,12 +9,15 @@ interface CollgeNameAndId {
 }
 interface Props {
   collegeNamesAndIdsArr: CollgeNameAndId[]
+  mt?: number
 }
 export default function HomePageSearchForm(props: Props) {
   const [collegeName, setCollegeName] = useState<string>("")
   const [filteredColleges, setFilteredColleges] = useState<CollgeNameAndId[]>(
     []
   )
+
+  props.mt = props.mt ?? 0
 
   const calculateRelevance = (name: string, query: string): number => {
     if (name.toLowerCase() === query.toLowerCase()) return 3
@@ -38,7 +41,7 @@ export default function HomePageSearchForm(props: Props) {
   }, [collegeName, props.collegeNamesAndIdsArr])
 
   return (
-    <form className="flex mt-[5rem] gap-2 w-[50rem] mx-auto ">
+    <form className="flex gap-2 w-[50rem] mx-auto" style={{ marginTop: props.mt }}>
       <div className="flex pl-2 w-[99vw] lg:w-full md:w-[85vw] flex-col">
         <Input
           onChange={(e) => setCollegeName(e.target.value)}
