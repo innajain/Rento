@@ -36,17 +36,6 @@ import AcIcon from "@/public/ac.svg"
 import SingleOccu from "@/public/single_occu.svg"
 import MultiOccu from "@/public/multi_occu.svg"
 
-const CardsContainer = styled.div`
-  display: flex;
-  gap: 2rem;
-  padding: 3rem;
-`
-const ScrollableContainer = styled.div`
-  display: flex;
-  gap: 2rem;
-  overflow-x: scroll;
-`
-const PropertyCard = styled.div``
 const Heading = styled.span`
   font-size: 2.25rem;
   font-weight: 700;
@@ -72,84 +61,18 @@ const HeadingDiv = styled.div`
   flex-direction: column;
   gap: 0.5rem;
 `
-const GrayContainer = styled.div`
-  padding: 4rem;
-  background-color: #f9fafb;
-`
+
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return <p className="font-bold text-4xl">{children}</p>
+}
+
 export default function MainLandingPage() {
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-5">
-        <Heading>
-          Your <HighLightedText>Perfect</HighLightedText> Accommodation
-        </Heading>
-        <HorizontalScrollList>
-          {perfectAccommodation.map((roomData, index) => (
-            <RoomCard key={index} data={roomData} />
-          ))}
-        </HorizontalScrollList>
-      </div>
-      <CardsContainer className="bg-landingPage-gray-light4 flex justify-between">
-        {cards.map((card, index) => {
-          return (
-            <Card key={index}>
-              <CardBody className="flex items-center flex-col gap-6 py-4 w-2/3 self-center">
-                <Image src={card.icon} alt="icon" width={48} height={48} />
-                <div className="flex text-center flex-col gap-4">
-                  <span className="text-lg font-bold">{card.heading}</span>
-                  <span className="text-xs">{card.description}</span>
-                </div>
-              </CardBody>
-            </Card>
-          )
-        })}
-      </CardsContainer>
-      <HeadingDiv>
-        <Heading>
-          Popular areas for <HighLightedText>students</HighLightedText> in Delhi
-        </Heading>
-        <SubHeading>
-          Book student accommodations near universities around Delhi
-        </SubHeading>
-      </HeadingDiv>
-      <div className="flex flex-col gap-4 ">
-        {campuses.map((campus, index) => {
-          return (
-            <div
-              key={index}
-              className="flex p-2 py-4 rounded-lg flex-col gap-4 bg-primary"
-            >
-              <span className="text-2xl text-white text-center font-bold">
-                {campus.campus}
-              </span>
-              <div className="flex justify-evenly">
-                {campus.images.map((image, index) => {
-                  return (
-                    <div key={index} className="flex flex-col gap-2">
-                      {index !== 4 ? (
-                        <Image
-                          src={image.image}
-                          alt="image"
-                          width={200}
-                          height={200}
-                        />
-                      ) : (
-                        <Image
-                          className="rounded-2xl border-[10px]"
-                          src={image.image}
-                          alt="image"
-                          width={200}
-                          height={200}
-                        />
-                      )}
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          )
-        })}
-      </div>
+    <div className="flex flex-col gap-20">
+      <YourPerfectAccommodation />
+      <MarketingCards />
+      <PopularAreas />
+
       <HeadingDiv>
         <Heading>
           Book your favourite room in{" "}
@@ -200,6 +123,95 @@ export default function MainLandingPage() {
           })}
         </div>
       </div>
+    </div>
+  )
+}
+
+function PopularAreas() {
+  return (
+    <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-2">
+        <p className="font-bold text-4xl">
+          Popular areas for <span className="text-[#fe6f61]">students</span> in
+          Delhi
+        </p>
+        <p className="text-[#979797] font-medium">
+          Book student accommodations near universities around Delhi
+        </p>
+      </div>
+      <div className="flex flex-col gap-12">
+        {campuses.map((campus, index) => {
+          return (
+            <div
+              key={index}
+              className="flex p-2 py-4 rounded-3xl flex-col gap-4 bg-gradient-to-r from-[#FE6F61] to-[#FF5544]"
+            >
+              <span className="text-2xl text-white text-center font-bold">
+                {campus.campus}
+              </span>
+              <div className="flex justify-evenly">
+                {campus.images.map((image, index) => {
+                  return (
+                    <div key={index} className="flex flex-col gap-2">
+                      {index !== 4 ? (
+                        <Image
+                          src={image.image}
+                          alt="image"
+                          width={200}
+                          height={200}
+                        />
+                      ) : (
+                        <Image
+                          className="rounded-2xl border-[10px]"
+                          src={image.image}
+                          alt="image"
+                          width={200}
+                          height={200}
+                        />
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function YourPerfectAccommodation() {
+  return (
+    <div className="flex flex-col gap-5">
+      <SectionHeading>
+        Your <span className="text-[#fe6f61]">Perfect</span> Accommodation
+      </SectionHeading>
+      <HorizontalScrollList>
+        {perfectAccommodation.map((roomData, index) => (
+          <RoomCard key={index} data={roomData} />
+        ))}
+      </HorizontalScrollList>
+    </div>
+  )
+}
+
+function MarketingCards() {
+  return (
+    <div className="bg-landingPage-gray-light4 flex gap-10 justify-between">
+      {cards.map((card, index) => {
+        return (
+          <Card key={index} className="w-1/4">
+            <CardBody className="flex items-center flex-col gap-6 py-4 w-full self-center">
+              <Image src={card.icon} alt="icon" width={48} height={48} />
+              <div className="flex text-center flex-col gap-4">
+                <span className="text-lg font-bold">{card.heading}</span>
+                <span className="text-xs">{card.description}</span>
+              </div>
+            </CardBody>
+          </Card>
+        )
+      })}
     </div>
   )
 }
@@ -382,7 +394,6 @@ function RoomCard({ data }: { data: RoomData }) {
       <Card isHoverable className="h-[200px] w-[500px] p-3" radius="lg">
         <CardBody className="rounded-lg border-1 border-[#D8D8D8] p-0">
           <div className="flex h-full">
-
             {/* chatgpt do this: instead of just one image, i want a slider with multiple images. for now just use the same image 3 times. there shall be left and right arrows to navigate */}
             <Image
               src={data.image}

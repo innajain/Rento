@@ -20,7 +20,7 @@ export default async function HomePage() {
   return (
     <>
       <BgImage height={BG_IMG_HEIGHT_PX} />
-      <div className="flex-col flex items-center justify-center">
+      <div className="flex-col flex items-center justify-center ">
         <HomePageNavbar />
         <HomePageTitle mt={32*4}/>
         <HomePageSearchForm collegeNamesAndIdsArr={collegeNamesAndIdsArr} mt={14*4}/>
