@@ -5,6 +5,7 @@ import { NeedAssistance } from "./NeedAssistance"
 import { YourPerfectAccommodation } from "./YourPerfectAccommodation"
 import { MarketingCards } from "./MarketingCards"
 import { PopularAreas } from "./PopularAreas"
+import { PremiumAcomodation } from "./PremiumAcomodation"
 
 export const Heading = styled.span`
   font-size: 2.25rem;
@@ -28,9 +29,9 @@ export const HeadingDiv = styled.div`
 
 export default function MainLandingPage() {
   return (
-    <div className="flex flex-col gap-20">
+    <div className="flex flex-col gap-16">
       <YourPerfectAccommodation />
-      <YourPerfectAccommodation />
+      <PremiumAcomodation  />
       <MarketingCards />
       <PopularAreas />
       <BookSteps />

@@ -34,4 +34,18 @@ export const perfectAccommodation: RoomData[] = [
     pricePerMonth: "8,000",
     image: "/7a003bb4ff178a2ea451a316e3b92202.png",
   },
+  {
+    title: "Micheal Jackson 1st Floor R3",
+    address: "Vasanat Vihar, South Delhi",
+    tags: ["WiFi", "Triple Occupancy"],
+    pricePerMonth: "8,000",
+    image: "/7a003bb4ff178a2ea451a316e3b92202.png",
+  },
+  {
+    title: "Micheal Jackson 1st Floor R3",
+    address: "Vasanat Vihar, South Delhi",
+    tags: ["WiFi", "Triple Occupancy"],
+    pricePerMonth: "8,000",
+    image: "/7a003bb4ff178a2ea451a316e3b92202.png",
+  },
 ]

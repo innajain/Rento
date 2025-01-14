@@ -25,7 +25,7 @@ export default async function HomePage() {
         <HomePageTitle mt={32*4}/>
         <HomePageSearchForm collegeNamesAndIdsArr={collegeNamesAndIdsArr} mt={14*4}/>
         <div
-          className="absolute w-full px-40"
+          className="absolute w-full px-20"
           style={{ top: BG_IMG_HEIGHT_PX }}
         >
           <Highlights />
