@@ -10,20 +10,33 @@ const BG_IMG_HEIGHT_PX = 600
 
 export default async function HomePage() {
   const colleges = await getAllCollegesDetails()
-  const collegeNamesAndIdsArr = colleges.map((college: any) => {
-    return {
-      collegeName: college.name,
-      collegeId: college._id,
+  const uniqueCollegesMap = new Map()
+
+  // Get colleges with unique names
+  colleges.forEach((college: any) => {
+    if (!uniqueCollegesMap.has(college.name)) {
+      uniqueCollegesMap.set(college.name, college._id)
     }
   })
 
+  const collegeNamesAndIdsArr = Array.from(
+    uniqueCollegesMap,
+    ([collegeName, collegeId]) => ({
+      collegeName,
+      collegeId,
+    })
+  )
+  
   return (
     <>
       <BgImage height={BG_IMG_HEIGHT_PX} />
       <div className="flex-col flex items-center justify-center ">
         <HomePageNavbar />
-        <HomePageTitle mt={32*4}/>
-        <HomePageSearchForm collegeNamesAndIdsArr={collegeNamesAndIdsArr} mt={14*4}/>
+        <HomePageTitle mt={32 * 4} />
+        <HomePageSearchForm
+          collegeNamesAndIdsArr={collegeNamesAndIdsArr}
+          mt={14 * 4}
+        />
         <div
           className="absolute w-full px-20"
           style={{ top: BG_IMG_HEIGHT_PX }}
@@ -87,10 +100,13 @@ function Highlights() {
   )
 }
 
-function HomePageTitle({mt}: {mt?: number}) {
-  mt = mt??0
+function HomePageTitle({ mt }: { mt?: number }) {
+  mt = mt ?? 0
   return (
-    <div className="text-white flex flex-col gap-4 items-center h-24" style={{marginTop: mt}}>
+    <div
+      className="text-white flex flex-col gap-4 items-center h-24"
+      style={{ marginTop: mt }}
+    >
       <span className="text-5xl font-bold tracking-wider">
         Student Centric Accommodation Platform
       </span>
@@ -101,7 +117,7 @@ function HomePageTitle({mt}: {mt?: number}) {
   )
 }
 
-function BgImage({height}: {height: number}) {
+function BgImage({ height }: { height: number }) {
   return (
     <Image
       src={HomeImage}
