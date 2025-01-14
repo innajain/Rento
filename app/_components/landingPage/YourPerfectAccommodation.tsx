@@ -10,7 +10,7 @@ export function YourPerfectAccommodation() {
       </p>
       <HorizontalScrollList>
         {perfectAccommodation.map((roomData, index) => (
-          <RoomCard key={index} data={roomData} />
+          <RoomCard key={index} data={roomData} premium={false} />
         ))}
       </HorizontalScrollList>
     </div>
