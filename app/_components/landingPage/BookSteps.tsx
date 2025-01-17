@@ -1,27 +1,14 @@
 import Image from "next/image"
-import {
-  Heading,
-  HeadingDiv,
-  HighLightedText,
-  SubHeading,
-} from "./MainLandingPage"
 import Arrow from "@/public/arrow.png"
 import Home from "@/public/Home.png"
 import FileCheck from "@/public/File Check.png"
 import Magnifier from "@/public/Minimalistic Magnifer.png"
+import { Heading } from "./Heading"
 
 export function BookingSteps() {
   return (
     <>
-      <HeadingDiv>
-        <Heading>
-          Book your favourite room in{" "}
-          <HighLightedText>3 simple steps</HighLightedText>
-        </Heading>
-        <SubHeading>
-          What do our 10k+ Students have to say about their experience with ROR
-        </SubHeading>
-      </HeadingDiv>
+    <Heading titleBeforeRed="Book your favourite room in" red="3 simple steps" titleAfterRed="" subHeading="What do our 10k+ Students have to say about their experience with ROR"/>
       <div className="flex gap-4">
         {bookingCard.map((card, index) => {
           return (

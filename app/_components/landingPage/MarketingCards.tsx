@@ -11,7 +11,7 @@ export function MarketingCards() {
       {cards.map((card, index) => {
         return (
           <Card key={index} className="flex-1">
-            <CardBody className="flex items-center flex-col gap-6 py-4 w-full self-center">
+            <CardBody className="flex items-center flex-col gap-6 py-4 self-center">
               <Image src={card.icon} alt="icon" width={48} height={48} />
               <div className="flex text-center flex-col gap-4">
                 <span className="text-lg font-bold">{card.heading}</span>

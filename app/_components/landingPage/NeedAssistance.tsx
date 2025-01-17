@@ -1,16 +1,18 @@
 import Image from "next/image"
-import { Heading, HeadingDiv, SubHeading } from "./MainLandingPage"
 import Letter from "@/public/Letter.png"
 import WhatsApp from "@/public/whatsapp.png"
 import Call from "@/public/Phone Calling Rounded.png"
+import { Heading } from "./Heading"
 
 export function NeedAssistance() {
   return (
     <div className="flex justify-between items-center">
-      <HeadingDiv>
-        <Heading>Need Assistance?</Heading>
-        <SubHeading>Feel free to reach out with any questions.</SubHeading>
-      </HeadingDiv>
+      <Heading
+        titleBeforeRed="Need Assistance?"
+        red=""
+        titleAfterRed=""
+        subHeading="Feel free to reach out with any questions."
+      />
       <div className="flex gap-12">
         {assistance.map((assist, index) => {
           return (
