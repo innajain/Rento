@@ -7,8 +7,8 @@ import { MarketingCards } from "./MarketingCards"
 import { PopularAreas } from "./PopularAreas"
 import { PremiumAcomodation } from "./PremiumAcomodation"
 import Image from "next/image"
-import { Open_Sans } from "next/font/google"
 import { PartnerCashback } from "./PartnershipCashback"
+import { Testimonials } from "./Testimonials"
 
 export const Heading = styled.span`
   font-size: 2.25rem;
@@ -16,12 +16,12 @@ export const Heading = styled.span`
   line-height: 2.5rem;
 `
 export const SubHeading = styled.span`
-  font-size: 1rem;
+font-size: 1rem;
   line-height: 1.5rem;
   color: #979797;
   font-weight: 500;
-`
-export const HighLightedText = styled(Heading)`
+  `
+  export const HighLightedText = styled(Heading)`
   color: #fe6f61;
 `
 export const HeadingDiv = styled.div`
@@ -38,6 +38,7 @@ export default function MainLandingPage() {
       <MarketingCards />
       <PopularAreas />
       <PartnerCashback />
+      <Testimonials />
       <BookingSteps />
       <NeedAssistance />
     </div>

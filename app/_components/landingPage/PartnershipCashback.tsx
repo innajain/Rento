@@ -9,7 +9,7 @@ export function PartnerCashback() {
   return (
     <div className="flex w-full gap-20 h-60">
       {partnerCashbackData.map((item) => (
-        <div className="border-2 border-[#D8D8D8] rounded-2xl h-full flex-1 flex gap-10">
+        <div key={item.title} className="border-2 border-[#D8D8D8] rounded-2xl h-full flex-1 flex gap-10">
           <div className="flex flex-col p-5 gap-2 text-[#2A2A2A]">
             <p className="text-3xl font-semibold">{item.title}</p>
             <p className={opensans.className}>{item.description}</p>
