@@ -10,7 +10,7 @@ export function MarketingCards() {
     <div className="bg-landingPage-gray-light4 flex gap-10 justify-between">
       {cards.map((card, index) => {
         return (
-          <Card key={index} className="w-1/4">
+          <Card key={index} className="flex-1">
             <CardBody className="flex items-center flex-col gap-6 py-4 w-full self-center">
               <Image src={card.icon} alt="icon" width={48} height={48} />
               <div className="flex text-center flex-col gap-4">

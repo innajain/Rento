@@ -6,7 +6,7 @@ import HomePageNavbar from "./_components/landingPage/HomePageNavbar"
 import MainLandingPage from "./_components/landingPage/MainLandingPage"
 import { Card, CardBody } from "@nextui-org/react"
 
-const BG_IMG_HEIGHT_PX = 600
+const BG_IMG_HEIGHT_PX = 650
 
 export default async function HomePage() {
   const colleges = await getAllCollegesDetails()
