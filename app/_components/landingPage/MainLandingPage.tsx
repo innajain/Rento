@@ -1,11 +1,14 @@
 "use client"
 import styled from "styled-components"
-import { BookSteps } from "./BookSteps"
+import { BookingSteps } from "./BookSteps"
 import { NeedAssistance } from "./NeedAssistance"
 import { YourPerfectAccommodation } from "./YourPerfectAccommodation"
 import { MarketingCards } from "./MarketingCards"
 import { PopularAreas } from "./PopularAreas"
 import { PremiumAcomodation } from "./PremiumAcomodation"
+import Image from "next/image"
+import { Open_Sans } from "next/font/google"
+import { PartnerCashback } from "./PartnershipCashback"
 
 export const Heading = styled.span`
   font-size: 2.25rem;
@@ -31,10 +34,11 @@ export default function MainLandingPage() {
   return (
     <div className="flex flex-col gap-16">
       <YourPerfectAccommodation />
-      <PremiumAcomodation  />
+      <PremiumAcomodation />
       <MarketingCards />
       <PopularAreas />
-      <BookSteps />
+      <PartnerCashback />
+      <BookingSteps />
       <NeedAssistance />
     </div>
   )

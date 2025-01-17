@@ -10,7 +10,7 @@ import Home from "@/public/Home.png"
 import FileCheck from "@/public/File Check.png"
 import Magnifier from "@/public/Minimalistic Magnifer.png"
 
-export function BookSteps() {
+export function BookingSteps() {
   return (
     <>
       <HeadingDiv>
