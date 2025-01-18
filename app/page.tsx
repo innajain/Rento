@@ -14,6 +14,7 @@ import { Testimonials } from "./_components/landingPage/Testimonials"
 import { BookingSteps } from "./_components/landingPage/BookSteps"
 import { NeedAssistance } from "./_components/landingPage/NeedAssistance"
 import { WhereWeOperate } from "./_components/landingPage/WhereWeOperate"
+import { Footer } from "./_components/landingPage/Footer"
 
 const BG_IMG_HEIGHT_PX = 650
 
@@ -87,8 +88,4 @@ export default async function HomePage() {
       </div>
     </>
   )
-}
-
-function Footer() {
-  return <div className="bg-[#FE6F61] h-[300px]"></div>
 }
