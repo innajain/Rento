@@ -11,6 +11,8 @@ import WifiIconPremium from "@/public/wifi_premium.svg"
 import AcIconPremium from "@/public/ac_premium.svg"
 import SingleOccuPremium from "@/public/single_occu_premium.svg"
 import MultiOccuPremium from "@/public/multi_occu_premium.svg"
+import ShortStayIcon from "@/public/short_stay_pink.svg"
+import ShortStayPremium from "@/public/short_stay_premium.svg"
 const opensans = Open_Sans({ subsets: ["latin"] })
 
 export function RoomCard({
@@ -129,19 +131,21 @@ export type RoomData = {
   image: string
 }
 
-type RoomTag = "A/C" | "WiFi" | "Single Occupancy" | "Triple Occupancy"
+type RoomTag = "A/C" | "WiFi" | "Single Occupancy" | "Triple Occupancy" | "Short Stay"
 
 const tagIconMap: Record<RoomTag, string> = {
   "A/C": AcIcon,
   WiFi: WifiIcon,
   "Single Occupancy": SingleOccu,
   "Triple Occupancy": MultiOccu,
+  "Short Stay": ShortStayIcon,
 }
 const tagPremiumIconMap: Record<RoomTag, string> = {
   "A/C": AcIconPremium,
   WiFi: WifiIconPremium,
   "Single Occupancy": SingleOccuPremium,
   "Triple Occupancy": MultiOccuPremium,
+  "Short Stay": ShortStayPremium,
 }
 
 const tagColorClassMap: Record<
@@ -167,6 +171,10 @@ const tagColorClassMap: Record<
     bg: "bg-[#FFFCF0]",
     text: "text-[#FFC130]",
   },
+  "Short Stay": {
+    bg: "bg-[#ffeaee]",
+    text: "text-[#ed3a56]",
+  },
 }
 
 function TagElement({ tag, premium }: { tag: RoomTag; premium: boolean }) {
@@ -181,7 +189,10 @@ function TagElement({ tag, premium }: { tag: RoomTag; premium: boolean }) {
     >
       <Image
         src={premium ? tagPremiumIconMap[tag] : tagIconMap[tag]}
+        width={16}
+        height={16}
         alt={tag}
+        className="object-cover"
       />
       {tag}
     </div>

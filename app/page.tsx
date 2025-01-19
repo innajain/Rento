@@ -15,6 +15,8 @@ import { BookingSteps } from "./_components/landingPage/BookSteps"
 import { NeedAssistance } from "./_components/landingPage/NeedAssistance"
 import { WhereWeOperate } from "./_components/landingPage/WhereWeOperate"
 import { Footer } from "./_components/landingPage/Footer"
+import { ShortStays } from "./_components/landingPage/ShortStays"
+import { FlatmateNeeded } from "./_components/landingPage/FlatmateNeeded"
 
 const BG_IMG_HEIGHT_PX = 650
 
@@ -64,6 +66,12 @@ export default async function HomePage() {
         </div>
         <div className="px-20">
           <PremiumAcomodation />
+        </div>
+        <div className="px-20 pt-10">
+          <ShortStays />
+        </div>
+        <div className="px-20 pt-10">
+          <FlatmateNeeded />
         </div>
         <div className="bg-[#F9FAFB] px-20 py-10">
           <MarketingCards />

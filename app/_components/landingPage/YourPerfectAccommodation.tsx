@@ -1,13 +1,11 @@
-import { useRef } from "react"
 import { RoomCard, RoomData } from "./RoomCard"
 import { HorizontalScrollList } from "./HorizontalScrollList"
+import { Heading } from "./Heading"
 
 export function YourPerfectAccommodation() {
   return (
     <div className="flex flex-col gap-5">
-      <p className="font-bold text-4xl">
-        Your <span className="text-[#fe6f61]">Perfect</span> Accommodation
-      </p>
+      <Heading titleBeforeRed="Your" red="Perfect" titleAfterRed="Accommodation" />
       <HorizontalScrollList>
         {perfectAccommodation.map((roomData, index) => (
           <RoomCard key={index} data={roomData} premium={false} />
@@ -23,7 +21,7 @@ export const perfectAccommodation: RoomData[] = [
   {
     title: "Micheal Jackson 1st Floor R2",
     address: "Vasanat Vihar, South Delhi",
-    tags: ["A/C", "WiFi", "Single Occupancy"],
+    tags: ["A/C", "WiFi", "Single Occupancy", "Short Stay"],
     pricePerMonth: "7,000",
     image: "/78c3c990590b6c112e5b5cb34f1fbfac.png",
   },

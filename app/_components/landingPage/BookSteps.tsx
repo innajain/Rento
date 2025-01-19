@@ -9,6 +9,7 @@ export function BookingSteps() {
   return (
     <>
     <Heading titleBeforeRed="Book your favourite room in" red="3 simple steps" titleAfterRed="" subHeading="What do our 10k+ Students have to say about their experience with ROR"/>
+    <div className="h-12" />
       <div className="flex gap-4">
         {bookingCard.map((card, index) => {
           return (
