@@ -1,6 +1,8 @@
 import type { Config } from "tailwindcss";
 import {nextui} from "@nextui-org/react"
 import defaultTheme from "tailwindcss/defaultTheme"
+import line_clamp from "@tailwindcss/line-clamp"
+
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -36,6 +38,6 @@ const config: Config = {
     }
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [nextui(), line_clamp],
 };
 export default config;

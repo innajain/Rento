@@ -53,8 +53,8 @@ export default function HomePageNavbar() {
           Support
         </Link>
         <Link href={"/wishlist"} className="flex gap-3 items-center">
-          <Image src={Wishlist} alt="support" width={20} height={20} />
-          Support
+          <Image src={Wishlist} alt="wishlist" width={20} height={20} />
+          Wishlist
         </Link>
         {!authState.isAuthenticated && (
           <>

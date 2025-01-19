@@ -3,16 +3,27 @@ import { getAllCollegesDetails } from "@/actions/colleges/getAllCollegesDetails"
 import Image from "next/image"
 import HomeImage from "../public/ror-home-img.png"
 import HomePageNavbar from "./_components/landingPage/HomePageNavbar"
-import MainLandingPage from "./_components/landingPage/MainLandingPage"
-import { Card, CardBody } from "@nextui-org/react"
+import { Highlights } from "./Highlights"
+import { HomePageTitle } from "./HomePageTitle"
+import { YourPerfectAccommodation } from "./_components/landingPage/YourPerfectAccommodation"
+import { PremiumAcomodation } from "./_components/landingPage/PremiumAcomodation"
+import { MarketingCards } from "./_components/landingPage/MarketingCards"
+import { PopularAreas } from "./_components/landingPage/PopularAreas"
+import { PartnerCashback } from "./_components/landingPage/PartnershipCashback"
+import { Testimonials } from "./_components/landingPage/Testimonials"
+import { BookingSteps } from "./_components/landingPage/BookSteps"
+import { NeedAssistance } from "./_components/landingPage/NeedAssistance"
+import { WhereWeOperate } from "./_components/landingPage/WhereWeOperate"
+import { Footer } from "./_components/landingPage/Footer"
+import { ShortStays } from "./_components/landingPage/ShortStays"
+import { FlatmateNeeded } from "./_components/landingPage/FlatmateNeeded"
 
-const BG_IMG_HEIGHT_PX = 600
+const BG_IMG_HEIGHT_PX = 650
 
 export default async function HomePage() {
   const colleges = await getAllCollegesDetails()
   const uniqueCollegesMap = new Map()
 
-  // Get colleges with unique names
   colleges.forEach((college: any) => {
     if (!uniqueCollegesMap.has(college.name)) {
       uniqueCollegesMap.set(college.name, college._id)
@@ -26,10 +37,15 @@ export default async function HomePage() {
       collegeId,
     })
   )
-  
+
   return (
     <>
-      <BgImage height={BG_IMG_HEIGHT_PX} />
+      <Image
+        src={HomeImage}
+        alt="home"
+        className="absolute -z-20 pointer-events-none select-none"
+        style={{ height: BG_IMG_HEIGHT_PX }}
+      />
       <div className="flex-col flex items-center justify-center ">
         <HomePageNavbar />
         <HomePageTitle mt={32 * 4} />
@@ -37,93 +53,47 @@ export default async function HomePage() {
           collegeNamesAndIdsArr={collegeNamesAndIdsArr}
           mt={14 * 4}
         />
-        <div
-          className="absolute w-full px-20"
-          style={{ top: BG_IMG_HEIGHT_PX }}
-        >
+      </div>
+      <div
+        className="absolute w-full flex flex-col gap-8"
+        style={{ top: BG_IMG_HEIGHT_PX - 128 / 2 }}
+      >
+        <div className="px-20">
           <Highlights />
-          <MainLandingPage />
         </div>
+        <div className="bg-[#F9FAFB] px-20 py-10">
+          <YourPerfectAccommodation />
+        </div>
+        <div className="px-20">
+          <PremiumAcomodation />
+        </div>
+        <div className="px-20 pt-10">
+          <ShortStays />
+        </div>
+        <div className="px-20 pt-10">
+          <FlatmateNeeded />
+        </div>
+        <div className="bg-[#F9FAFB] px-20 py-10">
+          <MarketingCards />
+        </div>
+        <div className="px-20 gap-16 flex flex-col">
+          <PopularAreas />
+          <PartnerCashback />
+        </div>
+        <div className="bg-[#FEFBF2] px-20 py-10">
+          <Testimonials />
+        </div>
+        <div className="px-20">
+          <BookingSteps />
+        </div>
+        <div className="bg-[#F9FAFB] px-20 py-10">
+          <NeedAssistance />
+        </div>
+        <div className="px-20">
+          <WhereWeOperate />
+        </div>
+        <Footer />
       </div>
     </>
-  )
-}
-
-function HighlightCard({ data }: { data: HighlightData }) {
-  return (
-    <Card className="h-32 w-full rounded-3xl p-3" disableRipple>
-      <CardBody className="p-0">
-        <div className="w-full h-full border-1 border-[#D8D8D8] rounded-2xl flex">
-          <Image src={data.image} alt="home" width={116} height={116} />
-          <div className="w-6" />
-          <div className="flex flex-col justify-center">
-            <p className="text-xl font-semibold">{data.heading}</p>
-            <p className="text-[#979797]">{data.description}</p>
-          </div>
-        </div>
-      </CardBody>
-    </Card>
-  )
-}
-
-type HighlightData = {
-  image: string
-  heading: string
-  description: string
-}
-
-const highlights: HighlightData[] = [
-  {
-    image: "/bed.png",
-    heading: "1 lakh+ Beds",
-    description: "Book the one perfect for you",
-  },
-  {
-    image: "/building.png",
-    heading: "35+ DU Colleges",
-    description: "Search accomodation by your college",
-  },
-  {
-    image: "/star.png",
-    heading: "4.8+ Rating",
-    description: "What our students think about us",
-  },
-]
-
-function Highlights() {
-  return (
-    <div className="flex gap-20 -translate-y-1/2 justify-between">
-      {highlights.map((x) => (
-        <HighlightCard key={x.heading} data={x} />
-      ))}
-    </div>
-  )
-}
-
-function HomePageTitle({ mt }: { mt?: number }) {
-  mt = mt ?? 0
-  return (
-    <div
-      className="text-white flex flex-col gap-4 items-center h-24"
-      style={{ marginTop: mt }}
-    >
-      <span className="text-5xl font-bold tracking-wider">
-        Student Centric Accommodation Platform
-      </span>
-      <span className="text-2xl  tracking-wider">
-        affordable & comfortable living, just steps away from campus!
-      </span>
-    </div>
-  )
-}
-
-function BgImage({ height }: { height: number }) {
-  return (
-    <Image
-      src={HomeImage}
-      alt="home"
-      className="absolute -z-20 pointer-events-none select-none"
-      style={{ height }}
-    />
   )
 }

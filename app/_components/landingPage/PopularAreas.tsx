@@ -1,18 +1,3 @@
-import n1 from "@/public/n1.png"
-import n2 from "@/public/n2.png"
-import n3 from "@/public/n3.png"
-import n4 from "@/public/n4.png"
-import n5 from "@/public/n5.png"
-import o1 from "@/public/o1.png"
-import o2 from "@/public/o2.png"
-import o3 from "@/public/o3.png"
-import o4 from "@/public/o4.png"
-import o5 from "@/public/o5.png"
-import s1 from "@/public/s1.png"
-import s2 from "@/public/s2.png"
-import s3 from "@/public/s3.png"
-import s4 from "@/public/s4.png"
-import s5 from "@/public/s5.png"
 import Image from "next/image"
 
 export function PopularAreas() {
@@ -32,7 +17,7 @@ export function PopularAreas() {
           return (
             <div
               key={index}
-              className="flex p-2 py-4 rounded-3xl flex-col gap-4 bg-gradient-to-r from-[#FE6F61] to-[#FF5544]"
+              className="flex py-6 rounded-3xl flex-col gap-5 bg-gradient-to-b from-[#FE6F61] to-[#FF5544]"
             >
               <span className="text-2xl text-white text-center font-bold">
                 {campus.campus}
@@ -40,23 +25,20 @@ export function PopularAreas() {
               <div className="flex justify-evenly">
                 {campus.images.map((image, index) => {
                   return (
-                    <div key={index} className="flex flex-col gap-2">
-                      {index !== 4 ? (
-                        <Image
-                          src={image.image}
-                          alt="image"
-                          width={200}
-                          height={200}
-                        />
-                      ) : (
-                        <Image
-                          className="rounded-2xl border-[10px]"
-                          src={image.image}
-                          alt="image"
-                          width={200}
-                          height={200}
-                        />
-                      )}
+                    <div
+                      key={image.name}
+                      className="flex aspect-square relative w-[200px]"
+                    >
+                      <Image
+                        className="rounded-2xl border-[10px]"
+                        src={image.image}
+                        alt="image"
+                        width={300}
+                        height={300}
+                      />
+                      <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-md bg-[#FE6F61] w-3/4 rounded-lg text-center p-1 text-nowrap overflow-hidden text-ellipsis">
+                        {image.name}
+                      </p>
                     </div>
                   )
                 })}
@@ -74,23 +56,23 @@ const campuses = [
     campus: "North Campus",
     images: [
       {
-        image: n1,
+        image: "/n1.png",
         name: "Kamalanagar",
       },
       {
-        image: n2,
+        image: "/n2.png",
         name: "Kalyan Vihar",
       },
       {
-        image: n3,
+        image: "/n3.png",
         name: "Roop Nagar",
       },
       {
-        image: n4,
+        image: "/n4.png",
         name: "Ghanta Ghar",
       },
       {
-        image: n5,
+        image: "/n5.png",
         name: "Shakti Nagar",
       },
     ],
@@ -99,23 +81,23 @@ const campuses = [
     campus: "South Campus",
     images: [
       {
-        image: s1,
+        image: "/s1.png",
         name: "Staya Niketan",
       },
       {
-        image: s2,
+        image: "/s2.png",
         name: "Moti Bagh",
       },
       {
-        image: s3,
+        image: "/s3.png",
         name: "Vasant Vihar",
       },
       {
-        image: s4,
+        image: "/s4.png",
         name: "Naraina Vihar",
       },
       {
-        image: s5,
+        image: "/s5.png",
         name: "Rajouri Garden",
       },
     ],
@@ -124,23 +106,23 @@ const campuses = [
     campus: "Off Campus",
     images: [
       {
-        image: o1,
+        image: "/o1.png",
         name: "Laxmi Nagar",
       },
       {
-        image: o2,
+        image: "/o2.png",
         name: "Mukherjee Nagar",
       },
       {
-        image: o3,
+        image: "/o3.png",
         name: "Old Rajendra Nagar",
       },
       {
-        image: o4,
+        image: "/o4.png",
         name: "Karol Bagh",
       },
       {
-        image: o5,
+        image: "/o5.png",
         name: "Hauz Khas",
       },
     ],

@@ -1,3 +1,4 @@
+"use client"
 import { useRef } from "react"
 
 export function HorizontalScrollList({
@@ -26,7 +27,7 @@ export function HorizontalScrollList({
         &#8249;
       </button>
       <div
-        className="flex overflow-x-scroll scroll-smooth gap-4 p-4 w-full scrollbar-hide"
+        className="flex overflow-x-scroll scroll-smooth gap-6 p-4 w-full scrollbar-hide"
         ref={scrollContainerRef}
       >
         {children}
